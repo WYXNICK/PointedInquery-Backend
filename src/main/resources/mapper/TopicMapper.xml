@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pointedInquery.mapper.TopicMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pointedInquery.entity.Topic">
+        <id column="topic_id" property="topicId" />
+        <result column="expert_id" property="expertId" />
+        <result column="title" property="title" />
+        <result column="text" property="text" />
+        <result column="price" property="price" />
+        <result column="talked_times" property="talkedTimes" />
+        <result column="way" property="way" />
+        <result column="topic_time" property="topicTime" />
+        <result column="appoint_time" property="appointTime" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        topic_id, expert_id, title, text, price, talked_times, way, topic_time, appoint_time, state
+    </sql>
+
+</mapper>

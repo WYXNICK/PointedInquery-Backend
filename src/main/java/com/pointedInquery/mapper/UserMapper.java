@@ -1,0 +1,31 @@
+package com.pointedInquery.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.ResultType;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.pointedInquery.entity.User;
+
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ */
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
+	//修改密码
+	@Update("update user set password=#{newPasswd} where phone=#{userId}")
+	public int changePasswd(String newPasswdd,String userId);
+	
+	//判断是否是行家
+	@Select("select isexpert from user where phone=#{userId}")
+	@ResultType(String.class)
+	public boolean IsExpert(String userId);
+	
+	//认证行家身份
+	@Update("update user set isexpert=\"是\" where phone=#{userId}")
+	public int beExpert(String userId);
+}

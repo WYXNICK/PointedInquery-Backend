@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pointedInquery.mapper.FavoritedirsExpertMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.pointedInquery.entity.FavoritedirsExpert">
+        <result column="customer_id" property="customerId" />
+        <result column="expert_id" property="expertId" />
+        <result column="real_name" property="realName" />
+        <result column="job" property="job" />
+        <result column="rating" property="rating" />
+        <result column="title" property="title" />
+        <result column="price" property="price" />
+        <result column="addr_province" property="addrProvince" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customer_id, expert_id, real_name, job, rating, title, price, addr_province
+    </sql>
+
+</mapper>
