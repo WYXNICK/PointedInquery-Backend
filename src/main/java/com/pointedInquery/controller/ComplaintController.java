@@ -39,20 +39,20 @@ public class ComplaintController {
     */
     @PostMapping("/CreateComplaint")
     public int CreateComplaint(@RequestParam Map<String, Object> param) {
-        return complaintService.CreateComplaint(param.get("Order_id"),param.get("user_id"),param.get("be_user_id"),param.get("contents"));
+        return complaintService.CreateComplaint(param.get("order_id"),param.get("user_id"),param.get("be_user_id"),param.get("contents"));
     }
 
     /*
     管理员可以更改投诉的状态
     */
     @PostMapping("/ChangeStatusComplaintToPass")
-    public int ChangeStatusComplaintToPass(@RequestParam Map<String, Object> param){
-        return complaintService.ChangeStatusComplaintToPass(param.get("Order_id"),param.get("user_id"),param.get("be_user_id"));
+    public int ChangeStatusComplaintToPass(@RequestParam String order_id, @RequestParam String user_id, @RequestParam String be_user_id){
+        return complaintService.ChangeStatusComplaintToPass(order_id, user_id, be_user_id);
     }
 
     @PostMapping("/ChangeStatusComplaintToBack")
-    public int ChangeStatusComplaintToBack(@RequestParam Map<String, Object> param){
-        return complaintService.ChangeStatusComplaintToBack(param.get("Order_id"),param.get("user_id"),param.get("be_user_id"));
+    public int ChangeStatusComplaintToBack(@RequestParam String order_id, @RequestParam String user_id, @RequestParam String be_user_id){
+        return complaintService.ChangeStatusComplaintToBack(order_id, user_id, be_user_id);
     }
 
 

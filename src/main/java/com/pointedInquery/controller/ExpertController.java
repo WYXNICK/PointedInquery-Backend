@@ -1,13 +1,17 @@
 package com.pointedInquery.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pointedInquery.entity.Expert;
 import com.pointedInquery.service.ExpertService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,7 +24,13 @@ import com.pointedInquery.service.ExpertService;
 public class ExpertController {
 	@Autowired
 	private ExpertService expertService;
-	
+
+	@PostMapping("/getAll")
+	public List<Expert> getAll() {
+		LambdaQueryWrapper<Expert> lambdaQueryWrapper = new LambdaQueryWrapper<Expert>();
+		return expertService.list(lambdaQueryWrapper);
+	}
+
 	@PostMapping("/getOne")
 	public Expert getOne(String userId) {
 		return expertService.getById(userId);

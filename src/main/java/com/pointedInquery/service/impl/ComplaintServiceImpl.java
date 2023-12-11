@@ -62,11 +62,11 @@ public class ComplaintServiceImpl extends ServiceImpl<ComplaintMapper, Complaint
      * 管理员修改投诉状态，先查询投诉是否存在，若存在则修改状态
      * */
     @Override
-    public int ChangeStatusComplaintToPass(Object order_id, Object user_id, Object be_user_id){
+    public int ChangeStatusComplaintToPass(String order_id, String user_id, String be_user_id){
         QueryWrapper<Complaint> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("order_id",order_id.toString());
-        queryWrapper.eq("user_id",user_id.toString());
-        queryWrapper.eq("be_user_id",be_user_id.toString());
+        queryWrapper.eq("order_id",order_id);
+        queryWrapper.eq("user_id",user_id);
+        queryWrapper.eq("be_user_id",be_user_id);
 
         Complaint complaint =complaintMapper.selectOne(queryWrapper);  //查询到需要创建的订单
         if(complaint==null){
@@ -82,11 +82,11 @@ public class ComplaintServiceImpl extends ServiceImpl<ComplaintMapper, Complaint
      * 管理员修改投诉状态，先查询投诉是否存在，若存在则修改状态
      * */
     @Override
-    public int ChangeStatusComplaintToBack(Object order_id, Object user_id, Object be_user_id){
+    public int ChangeStatusComplaintToBack(String order_id, String user_id, String be_user_id){
         QueryWrapper<Complaint> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("order_id",order_id.toString());
-        queryWrapper.eq("user_id",user_id.toString());
-        queryWrapper.eq("be_user_id",be_user_id.toString());
+        queryWrapper.eq("order_id",order_id);
+        queryWrapper.eq("user_id",user_id);
+        queryWrapper.eq("be_user_id",be_user_id);
 
         Complaint complaint =complaintMapper.selectOne(queryWrapper);  //查询到需要创建的订单
         if(complaint==null){
