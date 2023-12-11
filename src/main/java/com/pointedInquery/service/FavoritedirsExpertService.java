@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface FavoritedirsExpertService extends IService<FavoritedirsExpert> {
 
-    List<FavoritedirsExpert> GetDirsByUserid(Object customer_id);
+    List<FavoritedirsExpert> GetDirsByUserid(String customer_id);
 
     boolean DeleteDirsByUserid(Object customer_id, Object expert_id);
 
-    boolean CreateDirsByUserid(Object customer_id, Object expert_id);
+    boolean CreateDirsByUserid(String customer_id, String expert_id);
 }
