@@ -31,6 +31,7 @@ public class CityController {
 		lambdaQueryWrapper.eq(City::getPid, pid);
 		return cityService.list(lambdaQueryWrapper);
 	}
+
 	
 	@PostMapping("/getOne")
 	public String getOne(int pid,int cid) {

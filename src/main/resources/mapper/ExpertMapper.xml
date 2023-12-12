@@ -17,4 +17,8 @@
         phone, real_name, rating, description, id, price
     </sql>
 
+<!--    <select id="selectByType" resultType="com.pointedInquery.entity.Expert">-->
+<!--        SELECT * FROM expert WHERE type = #{type}-->
+<!--    </select>-->
+
 </mapper>

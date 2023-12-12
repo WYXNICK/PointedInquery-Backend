@@ -43,16 +43,18 @@ public class FavoritedirsExpertServiceImpl extends ServiceImpl<FavoritedirsExper
 
         return favoritedirsExperts;
     }
+
     @Override
-    public boolean DeleteDirsByUserid(Object customer_id, Object expert_id){
-        QueryWrapper<FavoritedirsExpert> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("customer_id",customer_id.toString());
-        queryWrapper.eq("expert_id",expert_id.toString());
-        int delete=favoritedirsExpertMapper.delete(queryWrapper);
-        if(delete>=1)
-            return true;//删除成功
-        else
-            return false;//删除失败
+    public boolean DeleteDirsByUserid(String phone, String expert_id){
+//        QueryWrapper<FavoritedirsExpert> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.eq("customer_id",customer_id.toString());
+//        queryWrapper.eq("expert_id",expert_id.toString());
+//        int delete=favoritedirsExpertMapper.delete(queryWrapper);
+//        if(delete>=1)
+//            return true;//删除成功
+//        else
+//            return false;//删除失败
+        return true;
     }
 
 

@@ -3,10 +3,7 @@ package com.pointedInquery.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.pointedInquery.entity.Expert;
 import com.pointedInquery.service.ExpertService;
@@ -25,10 +22,16 @@ public class ExpertController {
 	@Autowired
 	private ExpertService expertService;
 
-	@PostMapping("/getAll")
-	public List<Expert> getAll() {
-		LambdaQueryWrapper<Expert> lambdaQueryWrapper = new LambdaQueryWrapper<Expert>();
-		return expertService.list(lambdaQueryWrapper);
+	//根据前端传入的type返回属于这个类型的专家
+	@GetMapping("/getAll")
+	public List<Expert> getAll(@RequestParam int type) {
+		return expertService.listByType(type);
+	}
+
+//	在expert里加入一个方法，接受的参数为用户id，返回用户收藏的所有专家列表，每一个元素是专家的所有信息
+	@GetMapping("/user-collection")
+	public List<Expert> getUserCollection(@RequestParam String userID) {
+		return expertService.listCollectDir(userID);
 	}
 
 	@PostMapping("/getOne")

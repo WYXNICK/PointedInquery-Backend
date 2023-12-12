@@ -39,6 +39,9 @@ public class OrderController {
         return orderService.GetOrderByExpertID(param.get("expert_id"));
     }
 
+    /*
+    这个新增有问题，报500
+     */
     @PostMapping("/CreateOrder")
     public boolean CreateOrder(@RequestParam Map<String, Object> param) {
         System.out.println(param.get("customer_id"));
@@ -54,6 +57,9 @@ public class OrderController {
         return orderService.DeleteOrder(param.get("customer_id"),param.get("order_id"));
     }
 
+    /*
+    下面两个修改有问题，报500
+   */
     @PostMapping("/ModifyOrderStatusToFinish")
     public boolean ModifyOrderStatusToFinish(@RequestParam Map<String, Object> param) {
         return orderService.ModifyOrderStatusToFinish(param.get("customer_id"),param.get("order_id"));

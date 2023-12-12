@@ -32,8 +32,8 @@ public class FavoritedirsExpertController {
     }
 
     @PostMapping("/DeleteDirsByUserid")
-    public boolean DeleteDirsByUserid(@RequestParam Map<String, Object> param){
-        return favoritedirsExpertService.DeleteDirsByUserid(param.get("customer_id"),param.get("expert_id"));
+    public boolean DeleteDirsByUserid(@RequestParam String phone,@RequestParam String expert_id){
+        return favoritedirsExpertService.DeleteDirsByUserid(phone, expert_id);
     }
 
     @PostMapping("/CreateDirsByUserid")
