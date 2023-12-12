@@ -24,6 +24,11 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
     private ExpertMapper expertMapper;
 
     @Override
+    public Expert getOneExpert(String phone) {
+        return expertMapper.selectExpertByExpertId(phone);
+    }
+
+    @Override
     public List<Expert> listByType(int type) {
         return expertMapper.selectByType(type);
     }

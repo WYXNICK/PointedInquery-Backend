@@ -43,9 +43,9 @@ public class ExpertController {
 		return expertService.getExpertsWithTopics(content);
 	}
 
-	@PostMapping("/getOne")
+	@GetMapping("/getOne")
 	public Expert getOne(String userId) {
-		return expertService.getById(userId);
+		return expertService.getOneExpert(userId);
 	}
 	
 	@PostMapping("/addExpert")
