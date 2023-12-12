@@ -29,8 +29,8 @@ public interface FavoritedirsExpertMapper extends BaseMapper<FavoritedirsExpert>
       @Select("SELECT * from favoritedirs_expert where customer_id=#{customer_id}")
       public List<FavoritedirsExpert> selectExpertList(String customer_id);
 
-      @Insert("INSERT INTO favoritedirs_expert (customer_id, expert_id,real_name,job,rating,title,price,addr_province)" +
+      @Insert("INSERT INTO favoritedirs_expert (customer_id, expert_id,real_name,job,rating,title,price,addr_province,type)" +
               " VALUES (#{customerId}, #{expertId},#{realName},#{job},#{rating},#{title}" +
-              ",#{price},#{addrProvince})")
+              ",#{price},#{addrProvince},#{type})")
       public void addDetaiedInfo(FavoritedirsExpert fdExpert);
 }

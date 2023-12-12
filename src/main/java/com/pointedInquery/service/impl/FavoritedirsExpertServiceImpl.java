@@ -121,6 +121,7 @@ public class FavoritedirsExpertServiceImpl extends ServiceImpl<FavoritedirsExper
                    fdExpert.setPrice(expert.getPrice());
                    fdExpert.setRating(expert.getRating());
                    fdExpert.setRealName(expert.getRealName());
+                   fdExpert.setType(expert.getType());
                    fdExpert.setAddrProvince(user.getAddrProvince());
                    favoritedirsExpertMapper.addDetaiedInfo(fdExpert);
                    System.out.println(fdExpert);

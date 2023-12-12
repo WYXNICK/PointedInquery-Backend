@@ -37,6 +37,8 @@ public class Expert implements Serializable {
 
     private Integer price;
 
+    private Integer type;
+
 
 
 }
