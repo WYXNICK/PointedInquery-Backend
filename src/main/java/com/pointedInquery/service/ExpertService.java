@@ -2,6 +2,7 @@ package com.pointedInquery.service;
 
 import com.pointedInquery.entity.Expert;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.pointedInquery.service.impl.ExpertServiceImpl;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ import java.util.List;
 public interface ExpertService extends IService<Expert> {
     public List<Expert> listByType(int type);
     public List<Expert> listCollectDir(String userID);
+    public List<ExpertServiceImpl.ExpertWithTopics> getExpertsWithTopics(String searchString);
 }

@@ -2,6 +2,8 @@ package com.pointedInquery.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.pointedInquery.entity.Topic;
+import com.pointedInquery.service.impl.ExpertServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +11,7 @@ import com.pointedInquery.entity.Expert;
 import com.pointedInquery.service.ExpertService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -32,6 +35,12 @@ public class ExpertController {
 	@GetMapping("/user-collection")
 	public List<Expert> getUserCollection(@RequestParam String userID) {
 		return expertService.listCollectDir(userID);
+	}
+
+//	后端返回的data是一个数组，表示所有匹配的专家信息，包括realName，job，topic数组（表示一个专家包含的所有topic）,price
+	@GetMapping("/search")
+	public List<ExpertServiceImpl.ExpertWithTopics> searchExpert(@RequestParam String content) {
+		return expertService.getExpertsWithTopics(content);
 	}
 
 	@PostMapping("/getOne")
