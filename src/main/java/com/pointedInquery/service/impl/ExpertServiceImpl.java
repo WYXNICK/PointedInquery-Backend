@@ -50,8 +50,14 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
 
     @Override
-    public List<Expert> listByType(int type) {
-        return expertMapper.selectByType(type);
+    public List<ExpertWithTopics> listByType(int type) {
+        List<Expert> experts = expertMapper.selectByType(type);
+        List<ExpertWithTopics> expertDetails  = new ArrayList<>();
+        for(Expert e: experts) {
+            List<Topic> topics = expertMapper.selectTopicsByExpertId(e.getPhone());
+            expertDetails.add(new ExpertWithTopics(e, topics));
+        }
+        return expertDetails;
     }
 
     @Override
