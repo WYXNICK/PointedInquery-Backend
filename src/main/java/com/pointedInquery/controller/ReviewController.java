@@ -4,11 +4,7 @@ package com.pointedInquery.controller;
 import com.pointedInquery.entity.Review;
 import com.pointedInquery.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -25,9 +21,14 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping("/GetReviewByTopicID")
-    public List<Review> GetReviewByTopicID(@RequestParam Map<String, Object> param){
-        return reviewService.GetReviewByTopicID(param.get("topic_id"));
+    @GetMapping("/GetReviewByTopicID")
+    public List<Review> GetReviewByTopicID(@RequestParam String topic_id){
+        return reviewService.GetReviewByTopicID(topic_id);
+    }
+
+    @GetMapping("/GetReviewByExpertID")
+    public List<Review> GetReviewByExpertID(@RequestParam String expert_id){
+        return  reviewService.GetReviewByExpertID(expert_id);
     }
 
     @PostMapping("/CreateReview")

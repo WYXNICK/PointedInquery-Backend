@@ -101,4 +101,9 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
             return false;
     }
 
+    @Override
+    public List<Review> GetReviewByExpertID(String expertId){
+        return reviewMapper.selectReviewByExpert(expertId);
+    }
+
 }

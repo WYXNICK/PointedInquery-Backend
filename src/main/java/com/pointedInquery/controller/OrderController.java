@@ -6,11 +6,7 @@ import com.pointedInquery.dto.OrderDetailedInfoDto;
 import com.pointedInquery.entity.Order;
 import com.pointedInquery.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -31,13 +27,13 @@ public class OrderController {
     /*
     我的订单
     */
-    @PostMapping("/GetOrderByID")
+    @GetMapping("/GetOrderByID")
     public List<OrderDetailedInfoDto> GetOrderByID(@RequestParam String customer_id) {
         return orderService.GetOrderByID(customer_id);
     }
-    @PostMapping("/GetOrderByExpertID")
-    public List<Order> GetOrderByExpertID(@RequestParam Map<String, Object> param) {
-        return orderService.GetOrderByExpertID(param.get("expert_id"));
+    @GetMapping("/GetOrderByExpertID")
+    public List<Order> GetOrderByExpertID(@RequestParam String expert_id) {
+        return orderService.GetOrderByExpertID(expert_id);
     }
 
     /*

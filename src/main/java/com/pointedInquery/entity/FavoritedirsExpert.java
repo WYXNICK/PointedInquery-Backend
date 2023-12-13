@@ -41,8 +41,6 @@ public class FavoritedirsExpert implements Serializable {
     @ApiModelProperty(value = "每小时价格")
     private Integer price;
 
-    private Integer addrProvince;
-
     private Integer type;
 
 }

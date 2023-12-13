@@ -31,10 +31,6 @@ public class User implements Serializable {
 
     private String password;
 
-    private Integer addrCity;
-
-    private Integer addrProvince;
-
     private String school;
 
     @ApiModelProperty(value = "是否有专家身份")

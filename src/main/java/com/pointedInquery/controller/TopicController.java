@@ -7,11 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.pointedInquery.common.ReturnCode;
@@ -73,8 +69,8 @@ public class TopicController {
 		}
 	}
 	
-	@PostMapping("/getById")
-	public List<Topic> getById(String expertId){
+	@GetMapping("/getById")
+	public List<Topic> getById(@RequestParam String expertId){
 		LambdaQueryWrapper<Topic> lambdaQueryWrapper=new LambdaQueryWrapper<Topic>();
 		lambdaQueryWrapper.eq(Topic::getExpertId, expertId);
 		return topicService.list(lambdaQueryWrapper);

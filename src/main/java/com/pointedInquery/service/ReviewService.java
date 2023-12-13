@@ -20,4 +20,6 @@ public interface ReviewService extends IService<Review> {
     boolean DeleteReview(Object id);
 
     boolean ModifyReview(Object id,Object text);
+
+    List<Review> GetReviewByExpertID(String expertId);
 }
