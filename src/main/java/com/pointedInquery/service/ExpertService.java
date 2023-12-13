@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface ExpertService extends IService<Expert> {
     public ExpertDetailedDto getOneExpert(String phone);
-    public List<Expert> listByType(int type);
+    public List<ExpertServiceImpl.ExpertWithTopics> listByType(int type);
     public List<Expert> listCollectDir(String userID);
     public List<ExpertServiceImpl.ExpertWithTopics> getExpertsWithTopics(String searchString);
 }

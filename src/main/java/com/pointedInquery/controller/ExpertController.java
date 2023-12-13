@@ -28,7 +28,7 @@ public class ExpertController {
 
 	//根据前端传入的type返回属于这个类型的专家
 	@GetMapping("/getAll")
-	public List<Expert> getAll(@RequestParam int type) {
+	public List<ExpertServiceImpl.ExpertWithTopics> getAll(@RequestParam int type) {
 		return expertService.listByType(type);
 	}
 
