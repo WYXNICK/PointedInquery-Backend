@@ -39,7 +39,7 @@ public class ComplaintController {
     */
     @PostMapping("/CreateComplaint")
     public int CreateComplaint(@RequestParam Map<String, Object> param) {
-        return complaintService.CreateComplaint(param.get("order_id"),param.get("user_id"),param.get("be_user_id"),param.get("contents"));
+        return complaintService.CreateComplaint(param.get("Order_id"),param.get("user_id"),param.get("be_user_id"),param.get("contents"));
     }
 
     /*
