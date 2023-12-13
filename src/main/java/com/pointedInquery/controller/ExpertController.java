@@ -2,6 +2,7 @@ package com.pointedInquery.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.pointedInquery.dto.ExpertDetailedDto;
 import com.pointedInquery.entity.Topic;
 import com.pointedInquery.service.impl.ExpertServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ public class ExpertController {
 	}
 
 	@GetMapping("/getOne")
-	public Expert getOne(String userId) {
-		return expertService.getOneExpert(userId);
+	public ExpertDetailedDto getOne(String expertId) {
+		return expertService.getOneExpert(expertId);
 	}
 	
 	@PostMapping("/addExpert")

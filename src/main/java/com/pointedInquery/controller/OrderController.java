@@ -2,6 +2,7 @@ package com.pointedInquery.controller;
 
 
 
+import com.pointedInquery.dto.OrderDetailedInfoDto;
 import com.pointedInquery.entity.Order;
 import com.pointedInquery.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class OrderController {
     我的订单
     */
     @PostMapping("/GetOrderByID")
-    public List<Order> GetOrderByID(@RequestParam Map<String, Object> param) {
-        return orderService.GetOrderByID(param.get("customer_id"));
+    public List<OrderDetailedInfoDto> GetOrderByID(@RequestParam String customer_id) {
+        return orderService.GetOrderByID(customer_id);
     }
     @PostMapping("/GetOrderByExpertID")
     public List<Order> GetOrderByExpertID(@RequestParam Map<String, Object> param) {

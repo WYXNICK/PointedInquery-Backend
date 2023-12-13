@@ -1,8 +1,12 @@
 package com.pointedInquery.service.impl;
 
+import com.pointedInquery.dto.ExpertDetailedDto;
 import com.pointedInquery.entity.Expert;
+import com.pointedInquery.entity.Review;
 import com.pointedInquery.entity.Topic;
 import com.pointedInquery.mapper.ExpertMapper;
+import com.pointedInquery.mapper.ReviewMapper;
+import com.pointedInquery.mapper.TopicMapper;
 import com.pointedInquery.service.ExpertService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,10 +28,26 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
     @Autowired
     private ExpertMapper expertMapper;
 
+    @Autowired
+    private TopicMapper topicMapper;
+
+    @Autowired
+    private ReviewMapper reviewMapper;
+//    @Override
+//    public Expert getOneExpert(String phone) {
+//        return expertMapper.selectExpertByExpertId(phone);
+//    }
+
     @Override
-    public Expert getOneExpert(String phone) {
-        return expertMapper.selectExpertByExpertId(phone);
+    public ExpertDetailedDto getOneExpert(String phone) {
+        Expert expert=expertMapper.selectById(phone);
+        List<Topic> topicList=topicMapper.selectTopicByExpert(phone);
+        List<Review> reviewList=reviewMapper.selectReviewByExpert(phone);
+        ExpertDetailedDto dto = new ExpertDetailedDto(expert.getRealName(),expert.getRating(),expert.getDescription(),expert.getId(),
+                expert.getJob(),expert.getPrice(),expert.getType(),topicList,reviewList);
+        return dto;
     }
+
 
     @Override
     public List<Expert> listByType(int type) {
@@ -52,6 +73,7 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         public ExpertWithTopics() {
             // 无参构造函数
         }
+
         public ExpertWithTopics(Expert expert, List<Topic> topics) {
             this.phone = expert.getPhone();
             this.realName = expert.getRealName();
@@ -116,5 +138,6 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         return expertWithTopicsList;
     }
 
-
 }
+
+

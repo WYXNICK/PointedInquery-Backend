@@ -1,5 +1,6 @@
 package com.pointedInquery.service;
 
+import com.pointedInquery.dto.OrderDetailedInfoDto;
 import com.pointedInquery.entity.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public interface OrderService extends IService<Order> {
 
-    List<Order> GetOrderByID(Object customer_id);
+    List<OrderDetailedInfoDto> GetOrderByID(Object customer_id);
 
     List<Order> GetOrderByExpertID(Object expert_id);
 

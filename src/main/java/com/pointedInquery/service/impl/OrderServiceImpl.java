@@ -1,14 +1,20 @@
 package com.pointedInquery.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.pointedInquery.dto.OrderDetailedInfoDto;
+import com.pointedInquery.entity.Expert;
 import com.pointedInquery.entity.Order;
+import com.pointedInquery.entity.Topic;
+import com.pointedInquery.mapper.ExpertMapper;
 import com.pointedInquery.mapper.OrderMapper;
+import com.pointedInquery.mapper.TopicMapper;
 import com.pointedInquery.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,16 +30,32 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private OrderMapper orderMapper;
 
+    @Autowired
+    private ExpertMapper expertMapper;
+    @Autowired
+    private TopicMapper topicMapper;
 
     /*
      * 根据customer_id查找该用户所有的订单
      * */
     @Override
-    public List<Order> GetOrderByID(Object customer_id){
+    public List<OrderDetailedInfoDto> GetOrderByID(Object customer_id){
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("customer_id",customer_id);
-
-        return orderMapper.selectList(queryWrapper);
+        List<OrderDetailedInfoDto> dtoList=new ArrayList<>();
+        List<Order> orderList= orderMapper.selectList(queryWrapper);
+        for(Order order : orderList){
+            String expertId= order.getExpertId();
+            String topicId=order.getTopicId();
+            Expert expert=expertMapper.selectById(expertId);
+            Topic topic=topicMapper.selectById(topicId);
+            String realName=expert==null?"":expert.getRealName();
+            String title=topic==null?"":topic.getTitle();
+            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getCustomerId(),order.getExpertId()
+            ,order.getTopicId(),order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 
     /*
