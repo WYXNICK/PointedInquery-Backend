@@ -21,7 +21,7 @@ public class Review implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId
-    private String id;
+    private int id;
 
     private String userId;
 
@@ -35,12 +35,14 @@ public class Review implements Serializable {
 
     private String orderId;
 
+    private float score;
 
-    public String getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

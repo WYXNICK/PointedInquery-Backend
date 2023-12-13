@@ -1,6 +1,7 @@
 package com.pointedInquery.controller;
 
 
+import com.pointedInquery.dto.ReviewDTO;
 import com.pointedInquery.entity.Review;
 import com.pointedInquery.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,14 @@ public class ReviewController {
         return  reviewService.GetReviewByExpertID(expert_id);
     }
 
+//    @PostMapping("/CreateReview")
+//    public boolean CreateReview(@RequestParam Map<String, Object> param){
+//        return reviewService.CreateReview(param.get("user_id"),param.get("expert_id"),param.get("topic_id"),param.get("order_id"),param.get("text"));
+//    }
+
     @PostMapping("/CreateReview")
-    public boolean CreateReview(@RequestParam Map<String, Object> param){
-        return reviewService.CreateReview(param.get("user_id"),param.get("expert_id"),param.get("topic_id"),param.get("order_id"),param.get("text"));
+    public boolean CreateReview(@RequestBody ReviewDTO reviewDTO){
+        return reviewService.CreateReview(reviewDTO.getUserId(), reviewDTO.getExpertId(), reviewDTO.getTopicId(), reviewDTO.getText(), reviewDTO.getOrderId(), reviewDTO.getScore());
     }
 
     @PostMapping("/DeleteReview")

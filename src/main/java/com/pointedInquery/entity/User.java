@@ -26,16 +26,16 @@ public class User implements Serializable {
     @TableId
     private String phone;
 
-    @ApiModelProperty(value = "称昵")
+    @ApiModelProperty(value = "昵称")
     private String name;
 
     private String password;
 
     private String school;
 
-    @ApiModelProperty(value = "是否有专家身份")
-    @TableField("IsExpert")
-    private String isexpert;
+//    @ApiModelProperty(value = "是否有专家身份")
+//    @TableField("IsExpert")
+//    private String isexpert;
 
 
 }

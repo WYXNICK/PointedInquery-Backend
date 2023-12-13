@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.extension.api.R;
+import com.pointedInquery.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,26 +46,25 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
      * 新建一条评论
      * */
     @Override
-    public boolean CreateReview(Object user_id,Object expert_id,Object topic_id,Object order_id,Object text){
-        Review review=new Review();
-        review.setUserId((String) user_id);
-        review.setExpertId((String) expert_id);
-        review.setTopicId((String) topic_id);
-        review.setOrderId((String) order_id);
-        review.setText((String) text);
+    public boolean CreateReview(Object user_id,Object expert_id,Object topic_id,Object order_id,Object text, Object score){
+        Review review = new Review();
 
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        review.setTime(dateFormat.format(date));
 
-        review.setId(dateFormat.format(date)+ user_id);
+        review.setTime(dateFormat.format(date));
+        review.setUserId((String)user_id);
+        review.setTopicId((String)topic_id);
+        review.setOrderId((String)order_id);
+        review.setText((String)text);
+        review.setScore((float) score);
 
         int insert= reviewMapper.insert(review);
 
         if(insert>=1)
-            return true;  //新建成功
+            return true;  //创建成功
         else
-            return false;  //新建失败
+            return false;  //创建失败
     }
 
     /*

@@ -15,7 +15,7 @@ public interface ReviewService extends IService<Review> {
 
     List<Review> GetReviewByTopicID(Object topic_id);
 
-    boolean CreateReview(Object user_id,Object expert_id,Object topic_id,Object order_id,Object text);
+    boolean CreateReview(Object user_id,Object expert_id,Object topic_id,Object text, Object order_id, Object score);
 
     boolean DeleteReview(Object id);
 
