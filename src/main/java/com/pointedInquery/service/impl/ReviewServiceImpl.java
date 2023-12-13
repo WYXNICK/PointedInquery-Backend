@@ -54,10 +54,13 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
 
         review.setTime(dateFormat.format(date));
         review.setUserId((String)user_id);
+        review.setExpertId((String) expert_id);
         review.setTopicId((String)topic_id);
         review.setOrderId((String)order_id);
         review.setText((String)text);
         review.setScore((float) score);
+
+        System.out.println(review.toString());
 
         int insert= reviewMapper.insert(review);
 

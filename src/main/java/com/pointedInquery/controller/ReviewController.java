@@ -39,7 +39,7 @@ public class ReviewController {
 
     @PostMapping("/CreateReview")
     public boolean CreateReview(@RequestBody ReviewDTO reviewDTO){
-        return reviewService.CreateReview(reviewDTO.getUserId(), reviewDTO.getExpertId(), reviewDTO.getTopicId(), reviewDTO.getText(), reviewDTO.getOrderId(), reviewDTO.getScore());
+        return reviewService.CreateReview(reviewDTO.getUser_id(), reviewDTO.getExpert_id(), reviewDTO.getTopic_id(), reviewDTO.getOrder_id(), reviewDTO.getText(), reviewDTO.getScore());
     }
 
     @PostMapping("/DeleteReview")
