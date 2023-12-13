@@ -2,6 +2,7 @@ package com.pointedInquery.controller;
 
 
 
+import com.pointedInquery.dto.OrderCreateDto;
 import com.pointedInquery.dto.OrderDetailedInfoDto;
 import com.pointedInquery.entity.Order;
 import com.pointedInquery.service.OrderService;
@@ -37,16 +38,11 @@ public class OrderController {
     }
 
     /*
-    这个新增有问题，报500
+    已修改
      */
     @PostMapping("/CreateOrder")
-    public boolean CreateOrder(@RequestParam Map<String, Object> param) {
-        System.out.println(param.get("customer_id"));
-        System.out.println(param.get("expert_id"));
-        System.out.println(param.get("topic_id"));
-        System.out.println(param.get("appoint_time"));
-        System.out.println(param.get("price"));
-        return orderService.CreateOrder(param.get("customer_id"),param.get("expert_id"),param.get("topic_id"),param.get("appoint_time"),param.get("price"));
+    public boolean CreateOrder(@RequestBody OrderCreateDto orderCreateDto) {
+        return orderService.CreateOrder(orderCreateDto.getCustomer_id(),orderCreateDto.getExpert_id(),orderCreateDto.getTopic_id(),orderCreateDto.getAppoint_time(),orderCreateDto.getPrice());
     }
 
     @PostMapping("/DeleteOrder")
