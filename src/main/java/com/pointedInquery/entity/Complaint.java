@@ -22,6 +22,8 @@ public class Complaint implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId
+    private int complaintId;
+
     private String orderId;
 
     private String userId;
