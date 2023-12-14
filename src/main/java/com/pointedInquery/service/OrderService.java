@@ -18,7 +18,7 @@ public interface OrderService extends IService<Order> {
 
     List<Order> GetOrderByExpertID(Object expert_id);
 
-    boolean CreateOrder(Object customer_id, Object expert_id, Object topic_id, Object appoint_time, Object price);
+    boolean CreateOrder(String customer_id, String expert_id, String topic_id, String appoint_time, Integer price);
 
     boolean DeleteOrder(Object customer_id, Object order_id);
 

@@ -41,7 +41,7 @@ public class OrderController {
     已修改
      */
     @PostMapping("/CreateOrder")
-    public boolean CreateOrder(OrderCreateDto orderCreateDto) {
+    public boolean CreateOrder(@RequestBody OrderCreateDto orderCreateDto) {
         return orderService.CreateOrder(orderCreateDto.getCustomer_id(),orderCreateDto.getExpert_id(),orderCreateDto.getTopic_id(),orderCreateDto.getAppoint_time(),orderCreateDto.getPrice());
     }
 

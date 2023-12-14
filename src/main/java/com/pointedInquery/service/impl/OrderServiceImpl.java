@@ -71,7 +71,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     }
 
     @Override
-    public  boolean CreateOrder(Object customer_id, Object expert_id, Object topic_id, Object appoint_time, Object price){
+    public  boolean CreateOrder(String customer_id, String expert_id, String topic_id, String appoint_time, Integer price){
         Order order=new Order();
 
         Date date = new Date();
@@ -81,9 +81,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         order.setExpertId((String) expert_id);
         order.setTopicId((String) topic_id);
         order.setAppointTime((String) appoint_time);
-        order.setPrice((int)price);
+        order.setPrice((Integer) price);
         order.setState("进行中");
+
+
         int insert= orderMapper.insert(order);
+
 
         if(insert>=1)
             return true;  //创建成功
