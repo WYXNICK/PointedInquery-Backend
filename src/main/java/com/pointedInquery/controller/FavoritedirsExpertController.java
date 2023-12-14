@@ -19,26 +19,26 @@ import com.pointedInquery.service.FavoritedirsExpertService;
  * </p>
  *
  */
-@RestController
-@RequestMapping("/favoritedirs-expert")
+//@RestController
+//@RequestMapping("/favoritedirs-expert")
 public class FavoritedirsExpertController {
 
-    @Autowired
-    private FavoritedirsExpertService favoritedirsExpertService;
-
-    @PostMapping("/GetDirsByUserid")
-    public List<FavoritedirsExpert> GetDirsByUserid(@RequestParam String phone){
-        return favoritedirsExpertService.GetDirsByUserid(phone);
-    }
-
-    @PostMapping("/DeleteDirsByUserid")
-    public boolean DeleteDirsByUserid(@RequestParam String phone,@RequestParam String expert_id){
-        return favoritedirsExpertService.DeleteDirsByUserid(phone, expert_id);
-    }
-
-    @PostMapping("/CreateDirsByUserid")
-    public boolean CreateDirsByUserid(@RequestParam String phone,@RequestParam String expert_id){
-        return favoritedirsExpertService.CreateDirsByUserid(phone,expert_id);
-    }
+//    @Autowired
+//    private FavoritedirsExpertService favoritedirsExpertService;
+//
+//    @PostMapping("/GetDirsByUserid")
+//    public List<FavoritedirsExpert> GetDirsByUserid(@RequestParam String phone){
+//        return favoritedirsExpertService.GetDirsByUserid(phone);
+//    }
+//
+//    @PostMapping("/DeleteDirsByUserid")
+//    public boolean DeleteDirsByUserid(@RequestParam String phone,@RequestParam String expert_id){
+//        return favoritedirsExpertService.DeleteDirsByUserid(phone, expert_id);
+//    }
+//
+//    @PostMapping("/CreateDirsByUserid")
+//    public boolean CreateDirsByUserid(@RequestParam String phone,@RequestParam String expert_id){
+//        return favoritedirsExpertService.CreateDirsByUserid(phone,expert_id);
+//    }
 
 }
