@@ -28,4 +28,8 @@ public interface UserMapper extends BaseMapper<User> {
 	//认证行家身份
 	@Update("update user set isexpert=\"是\" where phone=#{userId}")
 	public int beExpert(String userId);
+
+	//判断是否存在这样一条收藏关系
+	@Select("SELECT COUNT(*) FROM favoritedirs WHERE phone = #{userId} AND expert_id = #{expertId}")
+	int existsByUserIdAndExpertId(String userId, String expertId);
 }
