@@ -77,15 +77,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
         order.setPayTime(dateFormat.format(date));
-
-        order.setOrderId(customer_id+dateFormat.format(date));
         order.setCustomerId((String) customer_id);
         order.setExpertId((String) expert_id);
         order.setTopicId((String) topic_id);
         order.setAppointTime((String) appoint_time);
         order.setPrice((int)price);
         order.setState("进行中");
-
         int insert= orderMapper.insert(order);
 
         if(insert>=1)

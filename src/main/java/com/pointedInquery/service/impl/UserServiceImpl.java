@@ -38,4 +38,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		}
 	}
 
+	@Override
+	public int checkCollectDir(String userId, String expertId) {
+		return userMapper.existsByUserIdAndExpertId(userId, expertId);
+	}
+
 }

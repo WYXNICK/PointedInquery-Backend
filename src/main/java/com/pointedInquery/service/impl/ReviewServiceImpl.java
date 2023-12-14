@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.pointedInquery.entity.Order;
+import com.pointedInquery.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
     @Autowired
     private ReviewMapper reviewMapper;
 
+    @Autowired
+    private OrderMapper orderMapper;
+
 
 
     /*
@@ -46,13 +50,13 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
      * 新建一条评论
      * */
     @Override
-    public boolean CreateReview(Object user_id,Object expert_id,Object topic_id,Object order_id,Object text, Object score){
+    public boolean CreateReview(Object user_id,Object expert_id,Object topic_id,String order_id,Object text, Object score){
         Review review = new Review();
 
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-
-        review.setTime(dateFormat.format(date));
+        String time=dateFormat.format(date);
+        review.setTime(time);
         review.setUserId((String)user_id);
         review.setExpertId((String) expert_id);
         review.setTopicId((String)topic_id);
@@ -62,10 +66,13 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
 
         System.out.println(review.toString());
 
+
         int insert= reviewMapper.insert(review);
 
-        if(insert>=1)
+        if(insert>=1) {
+            orderMapper.updateOrderStatus("已评价",order_id);
             return true;  //创建成功
+        }
         else
             return false;  //创建失败
     }

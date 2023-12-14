@@ -2,6 +2,7 @@ package com.pointedInquery.entity;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -20,8 +21,8 @@ public class Review implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId
-    private int id;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
     private String userId;
 
@@ -36,61 +37,4 @@ public class Review implements Serializable {
     private String orderId;
 
     private float score;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getExpertId() {
-        return expertId;
-    }
-
-    public void setExpertId(String expertId) {
-        this.expertId = expertId;
-    }
-
-    public String getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
 }

@@ -14,4 +14,6 @@ public interface UserService extends IService<User> {
 	public boolean IsExpert(String userId);
 	
 	public boolean beExpert(String userId);
+
+	public int checkCollectDir(String userId, String expertId);
 }
