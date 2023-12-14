@@ -23,4 +23,7 @@ public interface TopicMapper extends BaseMapper<Topic> {
 
 	@Select("select * from topic where expert_id=#{phone}")
 	public List<Topic> selectTopicByExpert(String phone);
+
+	@Select("SELECT price FROM topic WHERE expert_id = #{expert_id} ORDER BY price ASC LIMIT 1")
+	Integer getLowestPriceByExpertId(String expert_id);
 }

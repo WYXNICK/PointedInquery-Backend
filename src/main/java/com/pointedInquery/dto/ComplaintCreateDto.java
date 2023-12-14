@@ -17,6 +17,6 @@ import lombok.NoArgsConstructor;
 public class ComplaintCreateDto {
     private String orderId;
     private String userId;
-    private String be_user_id;
+    private String beUserId;
     private String contents;
 }

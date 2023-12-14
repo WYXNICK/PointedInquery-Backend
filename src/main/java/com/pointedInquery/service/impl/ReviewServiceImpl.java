@@ -54,7 +54,7 @@ public class ReviewServiceImpl extends ServiceImpl<ReviewMapper, Review> impleme
         Review review = new Review();
 
         Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time=dateFormat.format(date);
         review.setTime(time);
         review.setUserId((String)user_id);

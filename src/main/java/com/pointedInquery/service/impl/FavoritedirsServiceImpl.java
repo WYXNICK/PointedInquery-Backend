@@ -32,6 +32,9 @@ public class FavoritedirsServiceImpl extends ServiceImpl<FavoritedirsMapper, Fav
 
     @Autowired
     private FavoritedirsMapper favoritedirsMapper;
+
+    @Autowired
+    private ExpertServiceImpl expertService;
     @Override
     public List<ExpertDetailedDto> GetDirsByUserid(String phone) {
         List<Favoritedirs> favoritedirs = favoritedirsMapper.selectExpertList(phone);
@@ -40,8 +43,9 @@ public class FavoritedirsServiceImpl extends ServiceImpl<FavoritedirsMapper, Fav
             Expert expert = expertMapper.selectExpertByExpertId(favoritedir.getExpertId()); // TODO,此处是phone还是expertid
             List<Topic> topics = topicMapper.selectTopicByExpert(favoritedir.getExpertId());
             List<Review> reviews = reviewMapper.selectReviewByExpert(favoritedir.getExpertId());
+            int lowestPrice = expertService.getLowestPrice(favoritedir.getExpertId());
             expertDetailedDtos.add(new ExpertDetailedDto(favoritedir.getExpertId(),expert.getRealName(), expert.getRating(), expert.getDescription(), expert.getId(),
-                    expert.getJob(), expert.getPrice(),expert.getType(), topics, reviews));
+                    expert.getJob(), lowestPrice ,expert.getType(), topics, reviews));
         }
         return expertDetailedDtos;
     }

@@ -10,6 +10,7 @@ import com.pointedInquery.mapper.TopicMapper;
 import com.pointedInquery.service.ExpertService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +44,10 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         Expert expert=expertMapper.selectById(phone);
         List<Topic> topicList=topicMapper.selectTopicByExpert(phone);
         List<Review> reviewList=reviewMapper.selectReviewByExpert(phone);
-        ExpertDetailedDto dto = new ExpertDetailedDto(phone,expert.getRealName(),expert.getRating(),expert.getDescription(),expert.getId(),
-                expert.getJob(),expert.getPrice(),expert.getType(),topicList,reviewList);
+//        int lowestPrice = topicMapper.getLowestPriceByExpertId(phone);
+        int lowestPrice = getLowestPrice(expert.getPhone());
+        ExpertDetailedDto dto = new ExpertDetailedDto(expert.getPhone(),expert.getRealName(),expert.getRating(),expert.getDescription(), expert.getId(),
+                expert.getJob(),lowestPrice,expert.getType(),topicList,reviewList);
         return dto;
     }
 
@@ -55,7 +58,9 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         List<ExpertWithTopics> expertDetails  = new ArrayList<>();
         for(Expert e: experts) {
             List<Topic> topics = expertMapper.selectTopicsByExpertId(e.getPhone());
-            expertDetails.add(new ExpertWithTopics(e, topics));
+//            int lowestPrice = topicMapper.getLowestPriceByExpertId(e.getPhone());
+            int lowestPrice = getLowestPrice(e.getPhone());
+            expertDetails.add(new ExpertWithTopics(e, topics, lowestPrice));
         }
         return expertDetails;
     }
@@ -80,14 +85,14 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
             // 无参构造函数
         }
 
-        public ExpertWithTopics(Expert expert, List<Topic> topics) {
+        public ExpertWithTopics(Expert expert, List<Topic> topics, int price) {
             this.phone = expert.getPhone();
             this.realName = expert.getRealName();
             this.rating = expert.getRating();
             this.description = expert.getDescription();
             this.id = expert.getId();
             this.job = expert.getJob();
-            this.price = expert.getPrice();
+            this.price = price;
             this.type = expert.getType();
             this.topics = topics;
         }
@@ -131,6 +136,14 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         }
     }
 
+    public Integer getLowestPrice(String expertId) {
+        Integer lowestPrice = topicMapper.getLowestPriceByExpertId(expertId);
+        if(lowestPrice == null) {
+            lowestPrice = 0;
+        }
+        return lowestPrice;
+    }
+
     @Override
     public List<ExpertWithTopics> getExpertsWithTopics(String searchString) {
         List<Expert> experts = expertMapper.selectExperts(searchString);
@@ -138,7 +151,9 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
         for (Expert expert : experts) {
             List<Topic> topics = expertMapper.selectTopicsByExpertId(expert.getPhone());
-            expertWithTopicsList.add(new ExpertWithTopics(expert, topics));
+//            int lowestPrice = topicMapper.getLowestPriceByExpertId(expert.getPhone());
+            int lowestPrice = getLowestPrice(expert.getPhone());
+            expertWithTopicsList.add(new ExpertWithTopics(expert, topics, lowestPrice));
         }
 
         return expertWithTopicsList;

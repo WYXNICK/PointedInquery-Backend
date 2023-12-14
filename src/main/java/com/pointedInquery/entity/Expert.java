@@ -35,7 +35,7 @@ public class Expert implements Serializable {
 
     private String job;
 
-    private Integer price;
+//    private Integer price;
 
     private Integer type;
 

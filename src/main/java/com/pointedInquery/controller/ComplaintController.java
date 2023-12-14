@@ -35,8 +35,8 @@ public class ComplaintController {
      创建投诉
     */
     @PostMapping("/CreateComplaint")
-    public int CreateComplaint(@RequestBody ComplaintCreateDto complaintCreateDto) {
-        return complaintService.CreateComplaint(complaintCreateDto.getOrderId(),complaintCreateDto.getUserId(),complaintCreateDto.getBe_user_id(),complaintCreateDto.getContents());
+    public int CreateComplaint(ComplaintCreateDto complaintCreateDto) {
+        return complaintService.CreateComplaint(complaintCreateDto.getOrderId(),complaintCreateDto.getUserId(),complaintCreateDto.getBeUserId(),complaintCreateDto.getContents());
     }
 
     /*
