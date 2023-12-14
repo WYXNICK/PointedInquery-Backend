@@ -15,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        order_id, user_id, be_user_id, state, time, contents
+        complaint_id,order_id, user_id, be_user_id, state, time, contents
     </sql>
 
 </mapper>

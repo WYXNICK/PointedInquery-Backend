@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -74,9 +76,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public  boolean CreateOrder(String customer_id, String expert_id, String topic_id, String appoint_time, Integer price){
         Order order=new Order();
 
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        order.setPayTime(dateFormat.format(date));
+        String payTime= LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        order.setPayTime(payTime);
         order.setCustomerId((String) customer_id);
         order.setExpertId((String) expert_id);
         order.setTopicId((String) topic_id);

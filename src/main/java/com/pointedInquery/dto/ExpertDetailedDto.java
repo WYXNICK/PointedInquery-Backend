@@ -19,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExpertDetailedDto {
+    private String expertId;
     private String realName;
     private Float rating;
     private String description;

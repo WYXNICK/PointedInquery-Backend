@@ -1,6 +1,8 @@
 package com.pointedInquery.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -27,11 +29,11 @@ public class ComplaintServiceImpl extends ServiceImpl<ComplaintMapper, Complaint
     * 创建投诉，先查询投诉是否已存在，若不存在则创建新的投诉
     * */
     @Override
-    public int CreateComplaint(Object order_id, Object user_id, Object be_user_id,Object contents){
+    public int CreateComplaint(String order_id, String user_id, String be_user_id,String contents){
         QueryWrapper<Complaint> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("order_id",order_id.toString());
-        queryWrapper.eq("user_id",user_id.toString());
-        queryWrapper.eq("be_user_id",be_user_id.toString());
+        queryWrapper.eq("order_id",order_id);
+        queryWrapper.eq("user_id",user_id);
+        queryWrapper.eq("be_user_id",be_user_id);
 
         Complaint complaint =complaintMapper.selectOne(queryWrapper);  //查询到需要创建的订单
         if(complaint!=null){
@@ -39,17 +41,16 @@ public class ComplaintServiceImpl extends ServiceImpl<ComplaintMapper, Complaint
         }
         complaint=new Complaint();
 
-        complaint.setOrderId((String) order_id);
-        complaint.setUserId((String) user_id);
-        complaint.setBeUserId((String) be_user_id);
+        complaint.setOrderId(order_id);
+        complaint.setUserId(user_id);
+        complaint.setBeUserId(be_user_id);
         complaint.setState("未处理");
-        complaint.setContents((String) contents);
 
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
-        complaint.setTime(dateFormat.format(date));
 
-        int insert = complaintMapper.insert(complaint);
+        String time= LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        complaint.setTime(time);
+        complaint.setContents(contents);
+        int insert = complaintMapper.addComplaint(complaint);
 
         if(insert>=1)
             return 1;  //创建成功
