@@ -38,7 +38,7 @@ public class ReviewController {
 //    }
 
     @PostMapping("/CreateReview")
-    public boolean CreateReview(@RequestBody ReviewDTO reviewDTO){
+    public boolean CreateReview(ReviewDTO reviewDTO){
         return reviewService.CreateReview(reviewDTO.getUser_id(), reviewDTO.getExpert_id(), reviewDTO.getTopic_id(), reviewDTO.getOrder_id(), reviewDTO.getText(), reviewDTO.getScore());
     }
 
