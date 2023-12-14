@@ -13,7 +13,7 @@ public interface ComplaintService extends IService<Complaint> {
 
 
 
-    int CreateComplaint(Object order_id, Object user_id, Object be_user_id,Object contents);
+    int CreateComplaint(String order_id, String user_id, String be_user_id,String contents);
 
     int ChangeStatusComplaintToPass(String order_id, String user_id, String be_user_id);
 

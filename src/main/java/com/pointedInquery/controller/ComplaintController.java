@@ -1,14 +1,11 @@
 package com.pointedInquery.controller;
 
 
+import com.pointedInquery.dto.ComplaintCreateDto;
 import com.pointedInquery.entity.Complaint;
 import com.pointedInquery.service.ComplaintService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -38,8 +35,8 @@ public class ComplaintController {
      创建投诉
     */
     @PostMapping("/CreateComplaint")
-    public int CreateComplaint(@RequestParam Map<String, Object> param) {
-        return complaintService.CreateComplaint(param.get("Order_id"),param.get("user_id"),param.get("be_user_id"),param.get("contents"));
+    public int CreateComplaint(@RequestBody ComplaintCreateDto complaintCreateDto) {
+        return complaintService.CreateComplaint(complaintCreateDto.getOrderId(),complaintCreateDto.getUserId(),complaintCreateDto.getBe_user_id(),complaintCreateDto.getContents());
     }
 
     /*
