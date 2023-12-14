@@ -1,7 +1,10 @@
 package com.pointedInquery.service;
 
+import com.pointedInquery.dto.ExpertDetailedDto;
 import com.pointedInquery.entity.Favoritedirs;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -10,5 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  *
  */
 public interface FavoritedirsService extends IService<Favoritedirs> {
+    public List<ExpertDetailedDto> GetDirsByUserid(String phone);
+    public boolean DeleteDirsByUserid(String phone, String expert_id);
+    public boolean CreateDirsByUserid(String phone, String expert_id);
 
 }
