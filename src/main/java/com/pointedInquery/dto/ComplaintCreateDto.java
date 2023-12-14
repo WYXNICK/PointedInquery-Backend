@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComplaintCreateDto {
-    String orderId;
-    String userId;
-    String be_user_id;
-    String contents;
+    private String orderId;
+    private String userId;
+    private String be_user_id;
+    private String contents;
 }

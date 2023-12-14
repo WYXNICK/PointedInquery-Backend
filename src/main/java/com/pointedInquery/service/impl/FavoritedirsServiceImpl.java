@@ -40,7 +40,7 @@ public class FavoritedirsServiceImpl extends ServiceImpl<FavoritedirsMapper, Fav
             Expert expert = expertMapper.selectExpertByExpertId(favoritedir.getExpertId()); // TODO,此处是phone还是expertid
             List<Topic> topics = topicMapper.selectTopicByExpert(favoritedir.getExpertId());
             List<Review> reviews = reviewMapper.selectReviewByExpert(favoritedir.getExpertId());
-            expertDetailedDtos.add(new ExpertDetailedDto(expert.getRealName(), expert.getRating(), expert.getDescription(), expert.getId(),
+            expertDetailedDtos.add(new ExpertDetailedDto(favoritedir.getExpertId(),expert.getRealName(), expert.getRating(), expert.getDescription(), expert.getId(),
                     expert.getJob(), expert.getPrice(),expert.getType(), topics, reviews));
         }
         return expertDetailedDtos;

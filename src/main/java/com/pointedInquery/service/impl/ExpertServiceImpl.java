@@ -43,7 +43,7 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         Expert expert=expertMapper.selectById(phone);
         List<Topic> topicList=topicMapper.selectTopicByExpert(phone);
         List<Review> reviewList=reviewMapper.selectReviewByExpert(phone);
-        ExpertDetailedDto dto = new ExpertDetailedDto(expert.getRealName(),expert.getRating(),expert.getDescription(),expert.getId(),
+        ExpertDetailedDto dto = new ExpertDetailedDto(phone,expert.getRealName(),expert.getRating(),expert.getDescription(),expert.getId(),
                 expert.getJob(),expert.getPrice(),expert.getType(),topicList,reviewList);
         return dto;
     }
