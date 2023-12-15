@@ -35,4 +35,7 @@ public interface UserMapper extends BaseMapper<User> {
 
 	@Select("SELECT name from user where phone=#{userId}")
     public String selectNameById(String userId);
+
+	@Update("UPDATE user SET is_expert = 1 WHERE phone = #{phone}")
+	void updateUserIsExpert(String phone);
 }
