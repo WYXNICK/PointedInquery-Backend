@@ -10,6 +10,7 @@ import com.pointedInquery.service.TopicService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -60,6 +61,11 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, Topic> implements
 	@Override
 	public Integer deleteTopic(String topicId) {
 		return topicMapper.deleteTopic(topicId);
+	}
+
+	@Override
+	public List<Topic> getTopicByExpertId(String expertId) {
+		return topicMapper.selectTopicByExpert(expertId);
 	}
 
 
