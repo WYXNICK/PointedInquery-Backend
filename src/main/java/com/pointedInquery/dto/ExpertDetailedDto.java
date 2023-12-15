@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -28,5 +29,5 @@ public class ExpertDetailedDto {
     private Integer price;
     private Integer type;
     private List<Topic> topics;
-    private List<Review> reviews;
+    private List<HashMap<String,Object>> reviews;
 }

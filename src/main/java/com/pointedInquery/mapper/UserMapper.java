@@ -32,4 +32,7 @@ public interface UserMapper extends BaseMapper<User> {
 	//判断是否存在这样一条收藏关系
 	@Select("SELECT COUNT(*) FROM favoritedirs WHERE phone = #{userId} AND expert_id = #{expertId}")
 	int existsByUserIdAndExpertId(String userId, String expertId);
+
+	@Select("SELECT name from user where phone=#{userId}")
+    public String selectNameById(String userId);
 }

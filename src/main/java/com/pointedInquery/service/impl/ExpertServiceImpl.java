@@ -7,10 +7,9 @@ import com.pointedInquery.entity.Topic;
 import com.pointedInquery.mapper.ExpertMapper;
 import com.pointedInquery.mapper.ReviewMapper;
 import com.pointedInquery.mapper.TopicMapper;
+import com.pointedInquery.mapper.UserMapper;
 import com.pointedInquery.service.ExpertService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +33,9 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
     @Autowired
     private ReviewMapper reviewMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 //    @Override
 //    public Expert getOneExpert(String phone) {
 //        return expertMapper.selectExpertByExpertId(phone);
@@ -44,10 +46,24 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         Expert expert=expertMapper.selectById(phone);
         List<Topic> topicList=topicMapper.selectTopicByExpert(phone);
         List<Review> reviewList=reviewMapper.selectReviewByExpert(phone);
+        List<HashMap<String,Object>> reviews=new ArrayList<>();
+        for(Review review : reviewList){
+            HashMap<String,Object> reviewDetail =new HashMap<>();
+            reviewDetail.put("id",review.getId());
+            reviewDetail.put("userId",review.getUserId());
+            reviewDetail.put("expertId",review.getExpertId());
+            reviewDetail.put("topicId",review.getTopicId());
+            reviewDetail.put("text",review.getText());
+            reviewDetail.put("time",review.getTime());
+            reviewDetail.put("orderId",review.getOrderId());
+            reviewDetail.put("score",review.getScore());
+            reviewDetail.put("name",userMapper.selectNameById(review.getUserId()));
+            reviews.add(reviewDetail);
+        }
 //        int lowestPrice = topicMapper.getLowestPriceByExpertId(phone);
         int lowestPrice = getLowestPrice(expert.getPhone());
         ExpertDetailedDto dto = new ExpertDetailedDto(expert.getPhone(),expert.getRealName(),expert.getRating(),expert.getDescription(), expert.getId(),
-                expert.getJob(),lowestPrice,expert.getType(),topicList,reviewList);
+                expert.getJob(),lowestPrice,expert.getType(),topicList,reviews);
         return dto;
     }
 

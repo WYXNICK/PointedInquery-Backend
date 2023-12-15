@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -35,6 +36,9 @@ public class FavoritedirsServiceImpl extends ServiceImpl<FavoritedirsMapper, Fav
 
     @Autowired
     private ExpertServiceImpl expertService;
+
+    @Autowired
+    private UserMapper userMapper;
     @Override
     public List<ExpertDetailedDto> GetDirsByUserid(String phone) {
         List<Favoritedirs> favoritedirs = favoritedirsMapper.selectExpertList(phone);
@@ -42,7 +46,21 @@ public class FavoritedirsServiceImpl extends ServiceImpl<FavoritedirsMapper, Fav
         for(Favoritedirs favoritedir:favoritedirs) {
             Expert expert = expertMapper.selectExpertByExpertId(favoritedir.getExpertId()); // TODO,此处是phone还是expertid
             List<Topic> topics = topicMapper.selectTopicByExpert(favoritedir.getExpertId());
-            List<Review> reviews = reviewMapper.selectReviewByExpert(favoritedir.getExpertId());
+            List<Review> reviewList = reviewMapper.selectReviewByExpert(favoritedir.getExpertId());
+            List<HashMap<String,Object>> reviews=new ArrayList<>();
+            for(Review review : reviewList){
+                HashMap<String,Object> reviewDetail =new HashMap<>();
+                reviewDetail.put("id",review.getId());
+                reviewDetail.put("userId",review.getUserId());
+                reviewDetail.put("expertId",review.getExpertId());
+                reviewDetail.put("topicId",review.getTopicId());
+                reviewDetail.put("text",review.getText());
+                reviewDetail.put("time",review.getTime());
+                reviewDetail.put("orderId",review.getOrderId());
+                reviewDetail.put("score",review.getScore());
+                reviewDetail.put("name",userMapper.selectNameById(review.getUserId()));
+                reviews.add(reviewDetail);
+            }
             int lowestPrice = expertService.getLowestPrice(favoritedir.getExpertId());
             expertDetailedDtos.add(new ExpertDetailedDto(favoritedir.getExpertId(),expert.getRealName(), expert.getRating(), expert.getDescription(), expert.getId(),
                     expert.getJob(), lowestPrice ,expert.getType(), topics, reviews));
