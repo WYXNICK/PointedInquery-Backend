@@ -20,21 +20,12 @@ public class Qualification implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
-    @ApiModelProperty(value = "0心理，1学业，2就业")
-    private String qid;
-
     @TableId
     private String phone;
 
-    private String qname;
-
-    private String content;
-
-    @ApiModelProperty(value = "照片的存储地址")
-    private String photo;
-
     @ApiModelProperty(value = "管理员审核")
     private String state;
+
+    private String applyTime;
 
 }

@@ -2,6 +2,7 @@ package com.pointedInquery.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.pointedInquery.dto.AddExpertDto;
 import com.pointedInquery.dto.ExpertDetailedDto;
 import com.pointedInquery.entity.Topic;
 import com.pointedInquery.service.impl.ExpertServiceImpl;
@@ -43,14 +44,14 @@ public class ExpertController {
 		return expertService.getOneExpert(expertId);
 	}
 	
-	@PostMapping("/addExpert")
-	public boolean addExpert(@RequestParam String userId,@RequestParam String name,@RequestParam String ID) {
-		Expert expert=new Expert();
-		expert.setId(ID);
-		expert.setPhone(userId);
-		expert.setRealName(name);
-		return expertService.save(expert);
-	}
+//	@PostMapping("/addExpert")
+//	public boolean addExpert(@RequestParam String userId,@RequestParam String name,@RequestParam String ID) {
+//		Expert expert=new Expert();
+//		expert.setId(ID);
+//		expert.setPhone(userId);
+//		expert.setRealName(name);
+//		return expertService.save(expert);
+//	}
 	
 	//行家修改自己的个人描述
 	@PostMapping("/changeInfo")
@@ -69,5 +70,12 @@ public class ExpertController {
 //		expert.setJob(job);
 //		return expertService.saveOrUpdate(expert);
 //	}
-	
+
+
+	//
+	@PostMapping("/addExpert")
+	public Integer addExpert(AddExpertDto addExpertDto) {
+		return expertService.addExpert(addExpertDto);
+	}
+
 }

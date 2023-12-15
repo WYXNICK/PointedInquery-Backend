@@ -30,7 +30,7 @@ public class TopicController {
 	@PostMapping("/addTopic")
 	public boolean addTopic(Topic topic) {
 		topic.setState("未审核");
-		topic.setTalkedTimes(0);
+//		topic.setTalkedTimes(0);
 		
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date=df.format(new Date());

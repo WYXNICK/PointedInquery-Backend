@@ -1,19 +1,21 @@
 package com.pointedInquery.service.impl;
 
+import com.pointedInquery.dto.AddExpertDto;
 import com.pointedInquery.dto.ExpertDetailedDto;
 import com.pointedInquery.entity.Expert;
+import com.pointedInquery.entity.Qualification;
 import com.pointedInquery.entity.Review;
 import com.pointedInquery.entity.Topic;
-import com.pointedInquery.mapper.ExpertMapper;
-import com.pointedInquery.mapper.ReviewMapper;
-import com.pointedInquery.mapper.TopicMapper;
-import com.pointedInquery.mapper.UserMapper;
+import com.pointedInquery.mapper.*;
 import com.pointedInquery.service.ExpertService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pointedInquery.service.QualificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,6 +38,9 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private QualificationMapper qualificationMapper;
 //    @Override
 //    public Expert getOneExpert(String phone) {
 //        return expertMapper.selectExpertByExpertId(phone);
@@ -173,6 +178,27 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         }
 
         return expertWithTopicsList;
+    }
+
+    @Override
+    public Integer addExpert(AddExpertDto addExpertDto) {
+        if(expertMapper.selectById(addExpertDto.getPhone())==null) {
+            Expert expert = new Expert(addExpertDto.getPhone(), addExpertDto.getRealName(), 0F, addExpertDto.getDescription(), addExpertDto.getId(), addExpertDto.getJob(), addExpertDto.getType());
+
+            // 获取当前时间戳
+            long timestampMillis = System.currentTimeMillis();
+            // 创建SimpleDateFormat对象，定义想要的日期时间格式
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            // 使用format方法将时间戳格式化为字符串
+            String formattedDate = dateFormat.format(new Date(timestampMillis));
+
+            Qualification qualification=new Qualification(addExpertDto.getPhone(),"待审核",formattedDate);
+            qualificationMapper.insert(qualification);
+            return expertMapper.insert(expert);
+        }
+        else{
+            return 0;
+        }
     }
 
 }

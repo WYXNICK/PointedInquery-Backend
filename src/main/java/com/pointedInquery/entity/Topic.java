@@ -28,17 +28,12 @@ public class Topic implements Serializable {
     @ApiModelProperty(value = "每小时价格")
     private Integer price;
 
-    @ApiModelProperty(value = "购买次数")
-    private Integer talkedTimes;
-
     @ApiModelProperty(value = "线上，线下，皆可")
     private String way;
 
     @ApiModelProperty(value = "话题发布时间")
     private String topicTime;
 
-    @ApiModelProperty(value = "可预约时间")
-    private String appointTime;
 
     @ApiModelProperty(value = "管理员审核")
     private String state;

@@ -4,17 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.pointedInquery.entity.Qualification">
-        <id column="qid" property="qid" />
+        <id column="phone" property="phone" />
         <result column="phone" property="phone" />
-        <result column="qname" property="qname" />
-        <result column="content" property="content" />
-        <result column="photo" property="photo" />
         <result column="state" property="state" />
+        <result column="apply_time" property="applyTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        qid, phone, qname, content, photo, state
+        phone,state,apply_time
     </sql>
 
 </mapper>
