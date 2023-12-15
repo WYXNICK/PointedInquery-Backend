@@ -53,13 +53,10 @@ public class ExpertController {
 //		return expertService.save(expert);
 //	}
 	
-	//行家修改自己的个人描述
+	//行家修改自己的个人信息
 	@PostMapping("/changeInfo")
-	public boolean changeInfo(@RequestParam String userId,@RequestParam String description) {
-		Expert expert=new Expert();
-		expert.setPhone(userId);
-		expert.setDescription(description);
-		return expertService.saveOrUpdate(expert);
+	public int changeInfo(AddExpertDto addExpertDto) {
+		return expertService.saveOrUpdate(addExpertDto);
 	}
 	
 	//由管理员授予行家身份说明
@@ -72,7 +69,7 @@ public class ExpertController {
 //	}
 
 
-	//
+	//个人申请成为行家
 	@PostMapping("/addExpert")
 	public Integer addExpert(AddExpertDto addExpertDto) {
 		return expertService.addExpert(addExpertDto);

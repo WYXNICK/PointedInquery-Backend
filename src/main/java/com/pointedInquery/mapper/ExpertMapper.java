@@ -1,5 +1,6 @@
 package com.pointedInquery.mapper;
 
+import com.pointedInquery.dto.AddExpertDto;
 import com.pointedInquery.entity.Topic;
 import org.apache.ibatis.annotations.*;
 
@@ -29,4 +30,6 @@ public interface ExpertMapper extends BaseMapper<Expert> {
     @Select("SELECT * FROM expert WHERE id = #{id}")
     Expert selectExpertById(String id);
 
+    @Update("UPDATE expert set real_name=#{realName},description=#{description},job=#{job} where phone=#{phone}")
+    int updateExpertInfo(AddExpertDto addExpertDto);
 }

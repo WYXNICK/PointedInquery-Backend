@@ -20,4 +20,6 @@ public interface ExpertService extends IService<Expert> {
     public List<Expert> listCollectDir(String userID);
     public List<ExpertServiceImpl.ExpertWithTopics> getExpertsWithTopics(String searchString);
     Integer addExpert(AddExpertDto addExpertDto);
+
+    int saveOrUpdate(AddExpertDto addExpertDto);
 }

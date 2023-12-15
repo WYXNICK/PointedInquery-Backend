@@ -201,6 +201,11 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
         }
     }
 
+    @Override
+    public int saveOrUpdate(AddExpertDto addExpertDto) {
+        return expertMapper.updateExpertInfo(addExpertDto);
+    }
+
 //    @Override
 //    public Integer addExpert(String phone, String realName, String description, String id, String job, String type) {
 //        Integer insertNum = expertMapper.insertExpert(phone, realName, description, id, job ,type);
