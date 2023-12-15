@@ -32,11 +32,11 @@ public class QualificationController {
 	private UserService userService;
 	
 	//管理员修改资质状态
-	@PostMapping("/check")
-	public boolean check(@RequestParam(value = "userId")String userId,
-			@RequestParam(value = "qid")String qid,@RequestParam(value = "state")String state) {
-		return qualificationService.check(state, qid, userId);
-	}
+//	@PostMapping("/check")
+//	public boolean check(@RequestParam(value = "userId")String userId,
+//			@RequestParam(value = "qid")String qid,@RequestParam(value = "state")String state) {
+//		return qualificationService.check(state, qid, userId);
+//	}
 	
 	/**
 	 * 上传图片

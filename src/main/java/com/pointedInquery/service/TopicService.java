@@ -11,4 +11,7 @@ import com.pointedInquery.entity.Topic;
  */
 public interface TopicService extends IService<Topic> {
 	public boolean check(String state,String topicId);
+	public Integer addTopic(String expertId, String title, String text, Integer price, String way);
+	public Integer refactorTopic(String topicId, String title, String text, Integer price, String way);
+	public Integer deleteTopic(String topicId);
 }
