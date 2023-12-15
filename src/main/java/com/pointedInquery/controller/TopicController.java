@@ -36,4 +36,9 @@ public class TopicController {
 		return topicService.deleteTopic(topicId);
 	}
 
+	@GetMapping("/getAllTopicByExpertId")
+	public List<Topic> getAllTopicByExpertId(String expertId) {
+		return topicService.getTopicByExpertId(expertId);
+	}
+
 }
