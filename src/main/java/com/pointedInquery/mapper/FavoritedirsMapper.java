@@ -10,12 +10,6 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
 @Mapper
 public interface FavoritedirsMapper extends BaseMapper<Favoritedirs> {
     @Select("SELECT * from favoritedirs where phone=#{phone}")

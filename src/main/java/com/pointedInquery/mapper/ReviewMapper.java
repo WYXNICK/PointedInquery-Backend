@@ -9,12 +9,6 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
 @Mapper
 public interface ReviewMapper extends BaseMapper<Review> {
     @Select("select * from review where expert_id=#{phone}")

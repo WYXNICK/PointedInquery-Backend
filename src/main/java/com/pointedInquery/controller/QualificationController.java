@@ -20,12 +20,6 @@ import com.pointedInquery.entity.Qualification;
 import com.pointedInquery.service.QualificationService;
 import com.pointedInquery.service.UserService;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/qualification")
 public class QualificationController {

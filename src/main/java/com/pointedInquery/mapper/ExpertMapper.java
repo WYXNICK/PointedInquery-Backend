@@ -8,12 +8,7 @@ import com.pointedInquery.entity.Expert;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
+
 @Mapper
 public interface ExpertMapper extends BaseMapper<Expert> {
     @Select(" SELECT * FROM expert WHERE type = #{type}")

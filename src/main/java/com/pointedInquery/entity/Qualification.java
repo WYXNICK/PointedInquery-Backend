@@ -6,16 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-/**
- * <p>
- * 
- * </p>
- *
- */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="Qualification对象", description="")
 public class Qualification implements Serializable {

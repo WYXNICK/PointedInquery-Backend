@@ -8,12 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pointedInquery.entity.Qualification;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
 @Mapper
 public interface QualificationMapper extends BaseMapper<Qualification> {
 	@Update("update qualification set photo=#{url} where qid=#{qid} and phone=#{userId}")

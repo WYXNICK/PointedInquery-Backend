@@ -15,12 +15,6 @@ import com.pointedInquery.common.ServerResponse;
 import com.pointedInquery.entity.Topic;
 import com.pointedInquery.service.TopicService;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/topic")
 public class TopicController {
@@ -48,26 +42,26 @@ public class TopicController {
 	}
 	
 	//管理员修改审核状态
-	@PostMapping("/check")
-	public boolean check(@RequestParam(value = "state")String state,
-			@RequestParam(value = "topicId")String topicId) {
-		return topicService.check(state, topicId);
-	}
+//	@PostMapping("/check")
+//	public boolean check(@RequestParam(value = "state")String state,
+//			@RequestParam(value = "topicId")String topicId) {
+//		return topicService.check(state, topicId);
+//	}
 	
-	@PostMapping("/changeTopic")
-	public ServerResponse<Boolean> changeTopic(@RequestBody Topic topic) {
-		//确认是行家本人修改
-		String userId=topicService.getById(topic.getTopicId()).getExpertId();
-		if(userId!=topic.getExpertId()) {
-			return ServerResponse.failure(ReturnCode.ACCESS_DENIED);
-		}
-		if(topicService.saveOrUpdate(topic)) {
-			return ServerResponse.success(null);
-		}
-		else {
-			return ServerResponse.failure(ReturnCode.RC999);
-		}
-	}
+//	@PostMapping("/changeTopic")
+//	public ServerResponse<Boolean> changeTopic(@RequestBody Topic topic) {
+//		//确认是行家本人修改
+//		String userId=topicService.getById(topic.getTopicId()).getExpertId();
+//		if(userId!=topic.getExpertId()) {
+//			return ServerResponse.failure(ReturnCode.ACCESS_DENIED);
+//		}
+//		if(topicService.saveOrUpdate(topic)) {
+//			return ServerResponse.success(null);
+//		}
+//		else {
+//			return ServerResponse.failure(ReturnCode.RC999);
+//		}
+//	}
 	
 	@GetMapping("/getById")
 	public List<Topic> getById(@RequestParam String expertId){

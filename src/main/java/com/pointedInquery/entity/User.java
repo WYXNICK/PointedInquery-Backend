@@ -33,9 +33,9 @@ public class User implements Serializable {
 
     private String school;
 
-//    @ApiModelProperty(value = "是否有专家身份")
-//    @TableField("IsExpert")
-//    private String isexpert;
+    @ApiModelProperty(value = "是否有专家身份,0不是专家，1是专家")
+    @TableField("is_expert")
+    private Integer isExpert;
 
 
 }

@@ -9,35 +9,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/favoritedirs-expert")
 public class FavoritedirsController {
 
     @Autowired
     private FavoritedirsService favoritedirsService;
-//    @GetMapping("/GetDirsByUserid")
-//    public List<FavoritedirsExpertDto> GetDirsByUserid(@RequestParam String phone){
-//        return favoritedirsService.GetDirsByUserid(phone);
-//    }
+
     @PostMapping("/GetDirsByUserid")
     public List<ExpertDetailedDto> GetDirsByUserid(@RequestParam String phone){
         return favoritedirsService.GetDirsByUserid(phone);
     }
 
     @PostMapping("/DeleteDirsByUserid")
-    public boolean DeleteDirsByUserid(String phone,String expert_id){
-        return favoritedirsService.DeleteDirsByUserid(phone, expert_id);
+    public boolean DeleteDirsByUserid(@RequestParam String phone,@RequestParam String expertId){
+        return favoritedirsService.DeleteDirsByUserid(phone, expertId);
     }
 
     @PostMapping("/CreateDirsByUserid")
-    public boolean CreateDirsByUserid(String phone, String expert_id){
-        return favoritedirsService.CreateDirsByUserid(phone,expert_id);
+    public boolean CreateDirsByUserid(String phone, String expertId){
+        return favoritedirsService.CreateDirsByUserid(phone,expertId);
     }
 
 

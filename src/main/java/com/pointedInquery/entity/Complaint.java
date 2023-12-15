@@ -12,12 +12,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * <p>
- *
- * </p>
- *
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

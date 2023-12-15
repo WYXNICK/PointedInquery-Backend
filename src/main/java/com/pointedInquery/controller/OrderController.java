@@ -12,12 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -29,8 +23,8 @@ public class OrderController {
     我的订单
     */
     @GetMapping("/GetOrderByID")
-    public List<OrderDetailedInfoDto> GetOrderByID(@RequestParam String customer_id) {
-        return orderService.GetOrderByID(customer_id);
+    public List<OrderDetailedInfoDto> GetOrderByID(@RequestParam String customerId) {
+        return orderService.GetOrderByID(customerId);
     }
     @GetMapping("/GetOrderByExpertID")
     public List<Order> GetOrderByExpertID(@RequestParam String expert_id) {

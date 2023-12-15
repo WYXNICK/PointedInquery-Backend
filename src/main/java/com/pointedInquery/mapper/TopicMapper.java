@@ -9,12 +9,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pointedInquery.entity.Topic;
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
 @Mapper
 public interface TopicMapper extends BaseMapper<Topic> {
 	@Update("update topic set state=#{state} where topic_id=#{topicId}")

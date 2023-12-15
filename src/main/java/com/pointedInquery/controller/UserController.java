@@ -1,6 +1,7 @@
 package com.pointedInquery.controller;
 
 
+import com.pointedInquery.dto.PersonalInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,6 @@ import com.pointedInquery.common.ServerResponse;
 import com.pointedInquery.entity.User;
 import com.pointedInquery.service.UserService;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -29,13 +24,13 @@ public class UserController {
 	}
 	
 	//调用第三方接口验证
-	@PostMapping("/becomeExpert")
-	public boolean becomeExpert(String userId,String name,String ID) {
-		return userService.beExpert(userId);
-	}
+//	@PostMapping("/becomeExpert")
+//	public boolean becomeExpert(String userId,String name,String ID) {
+//		return userService.beExpert(userId);
+//	}
 	
 	@PostMapping("/login")
-	public ServerResponse<String> login(String userId,String passwd){
+	public ServerResponse<String> login(@RequestParam String userId,@RequestParam String passwd){
 		//用户账号不存在
 
 		System.out.println(userId);
@@ -52,11 +47,11 @@ public class UserController {
 			return ServerResponse.failure(ReturnCode.USERID_OR_PASSWORD_ERROR);
 		}
 		//String token=LoginInterceptor.GenerateToken(userId);
-		return ServerResponse.success("hhh");
+		return ServerResponse.success("ok");
 	}
 	
 	@PostMapping("/register")
-	public ServerResponse<Boolean> register(String userId,String passwd){
+	public ServerResponse<Boolean> register(@RequestParam String userId,@RequestParam String passwd){
 		System.out.println(userId);
 		System.out.println(passwd);
 
@@ -74,7 +69,7 @@ public class UserController {
 		//对密码进行加密
 		user.setPassword(getMD5Str(passwd));
 		if(userService.save(user))
-			return ServerResponse.success(null);
+			return ServerResponse.success(true);
 		else {
 			return ServerResponse.failure(ReturnCode.RC999);
 		}
@@ -82,11 +77,10 @@ public class UserController {
 
 	//返回用户个人信息，同时将密码设为null避免泄露
 	@PostMapping("/myInfo")
-	public User myInfo(@RequestParam String userId) {
+	public PersonalInfoDto myInfo(@RequestParam String userId) {
 		User user = userService.getById(userId);
-		//保护密码
-		user.setPassword(null);
-		return user;
+		PersonalInfoDto personalInfoDto=new PersonalInfoDto(user.getPhone(),user.getName(),user.getSchool(),user.getIsExpert());
+		return personalInfoDto;
 	}
 	
 	@PostMapping("/changeInfo")
@@ -94,27 +88,29 @@ public class UserController {
 		return userService.saveOrUpdate(user);
 	}
 	
-	@PostMapping("/changePasswd")
-	public ServerResponse<Boolean> changePasswd(String userId,String oldPasswd,String newPasswd) {
-		//密码错误
-		if(userService.getById(userId).getPassword()!=getMD5Str(oldPasswd)) {
-			return ServerResponse.failure(ReturnCode.USERID_OR_PASSWORD_ERROR);
-		}
-		//进行修改
-		if(userService.changePasswd(newPasswd, userId)>0) {
-			return ServerResponse.success(null);
-		}
-		else {
-			return ServerResponse.failure(ReturnCode.RC999);
-		}
-	}
+//	@PostMapping("/changePasswd")
+//	public ServerResponse<Boolean> changePasswd(String userId,String oldPasswd,String newPasswd) {
+//		//密码错误
+//		if(userService.getById(userId).getPassword()!=getMD5Str(oldPasswd)) {
+//			return ServerResponse.failure(ReturnCode.USERID_OR_PASSWORD_ERROR);
+//		}
+//		//进行修改
+//		if(userService.changePasswd(newPasswd, userId)>0) {
+//			return ServerResponse.success(null);
+//		}
+//		else {
+//			return ServerResponse.failure(ReturnCode.RC999);
+//		}
+//	}
 	
 	//removeById的使用前提是，Mapper中标明了主键
-	@PostMapping("/deleteByPhone")
-	public boolean deleteByPhone(String userId) {
-		return userService.removeById(userId);
-	}
+//	@PostMapping("/deleteByPhone")
+//	public boolean deleteByPhone(String userId) {
+//		return userService.removeById(userId);
+//	}
 
+
+	//判断是否被收藏
 	@GetMapping("/checkCollectDir")
 	public int checkCollectDir(String userId, String expertId) {
 		return userService.checkCollectDir(userId, expertId);

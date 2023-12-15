@@ -6,12 +6,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pointedInquery.entity.Order;
 import org.apache.ibatis.annotations.Update;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- */
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
 

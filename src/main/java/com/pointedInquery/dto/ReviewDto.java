@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewDTO {
-    private String user_id;
-    private String expert_id;
-    private String topic_id;
-    private String order_id;
+public class ReviewDto {
+    private String userId;
+    private String expertId;
+    private String topicId;
+    private String orderId;
     private String text;
     private float score;
     // Getters and Setters

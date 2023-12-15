@@ -1,7 +1,7 @@
 package com.pointedInquery.controller;
 
 
-import com.pointedInquery.dto.ReviewDTO;
+import com.pointedInquery.dto.ReviewDto;
 import com.pointedInquery.entity.Review;
 import com.pointedInquery.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,26 +10,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/GetReviewByTopicID")
-    public List<Review> GetReviewByTopicID(@RequestParam String topic_id){
-        return reviewService.GetReviewByTopicID(topic_id);
-    }
+//    @GetMapping("/GetReviewByTopicID")
+//    public List<Review> GetReviewByTopicID(@RequestParam String topic_id){
+//        return reviewService.GetReviewByTopicID(topic_id);
+//    }
 
     @GetMapping("/GetReviewByExpertID")
-    public List<Review> GetReviewByExpertID(@RequestParam String expert_id){
-        return  reviewService.GetReviewByExpertID(expert_id);
+    public List<Review> GetReviewByExpertID(@RequestParam String expertId){
+        return  reviewService.GetReviewByExpertID(expertId);
     }
 
 //    @PostMapping("/CreateReview")
@@ -38,19 +32,19 @@ public class ReviewController {
 //    }
 
     @PostMapping("/CreateReview")
-    public boolean CreateReview(ReviewDTO reviewDTO){
-        return reviewService.CreateReview(reviewDTO.getUser_id(), reviewDTO.getExpert_id(), reviewDTO.getTopic_id(), reviewDTO.getOrder_id(), reviewDTO.getText(), reviewDTO.getScore());
+    public boolean CreateReview(ReviewDto reviewDto){
+        return reviewService.CreateReview(reviewDto.getUserId(), reviewDto.getExpertId(), reviewDto.getTopicId(), reviewDto.getOrderId(), reviewDto.getText(), reviewDto.getScore());
     }
 
-    @PostMapping("/DeleteReview")
-    public boolean DeleteReview(@RequestParam Map<String, Object> param){
-        return reviewService.DeleteReview(param.get("id"));
-    }
+//    @PostMapping("/DeleteReview")
+//    public boolean DeleteReview(@RequestParam Map<String, Object> param){
+//        return reviewService.DeleteReview(param.get("id"));
+//    }
 
-    @PostMapping("/ModifyReview")
-    public boolean ModifyReview(@RequestParam Map<String, Object> param){
-        return reviewService.ModifyReview(param.get("id"),param.get("text"));
-    }
+//    @PostMapping("/ModifyReview")
+//    public boolean ModifyReview(@RequestParam Map<String, Object> param){
+//        return reviewService.ModifyReview(param.get("id"),param.get("text"));
+//    }
 
 
 

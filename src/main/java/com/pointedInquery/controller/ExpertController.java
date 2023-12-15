@@ -14,12 +14,6 @@ import com.pointedInquery.service.ExpertService;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- */
 @RestController
 @RequestMapping("/expert")
 public class ExpertController {
@@ -32,11 +26,11 @@ public class ExpertController {
 		return expertService.listByType(type);
 	}
 
-//	在expert里加入一个方法，接受的参数为用户id，返回用户收藏的所有专家列表，每一个元素是专家的所有信息
-	@GetMapping("/user-collection")
-	public List<Expert> getUserCollection(@RequestParam String userID) {
-		return expertService.listCollectDir(userID);
-	}
+    //在expert里加入一个方法，接受的参数为用户id，返回用户收藏的所有专家列表，每一个元素是专家的所有信息
+//	@GetMapping("/user-collection")
+//	public List<Expert> getUserCollection(@RequestParam String userID) {
+//		return expertService.listCollectDir(userID);
+//	}
 
 //	后端返回的data是一个数组，表示所有匹配的专家信息，包括realName，job，topic数组（表示一个专家包含的所有topic）,price
 	@GetMapping("/search")
@@ -45,12 +39,12 @@ public class ExpertController {
 	}
 
 	@GetMapping("/getOne")
-	public ExpertDetailedDto getOne(String expertId) {
+	public ExpertDetailedDto getOne(@RequestParam String expertId) {
 		return expertService.getOneExpert(expertId);
 	}
 	
 	@PostMapping("/addExpert")
-	public boolean addExpert(String userId,String name,String ID) {
+	public boolean addExpert(@RequestParam String userId,@RequestParam String name,@RequestParam String ID) {
 		Expert expert=new Expert();
 		expert.setId(ID);
 		expert.setPhone(userId);
@@ -60,7 +54,7 @@ public class ExpertController {
 	
 	//行家修改自己的个人描述
 	@PostMapping("/changeInfo")
-	public boolean changeInfo(String userId,String description) {
+	public boolean changeInfo(@RequestParam String userId,@RequestParam String description) {
 		Expert expert=new Expert();
 		expert.setPhone(userId);
 		expert.setDescription(description);
@@ -68,12 +62,12 @@ public class ExpertController {
 	}
 	
 	//由管理员授予行家身份说明
-	@PostMapping("/authJob")
-	public boolean authJob(String userId,String job) {
-		Expert expert=new Expert();
-		expert.setPhone(userId);
-		expert.setJob(job);
-		return expertService.saveOrUpdate(expert);
-	}
+//	@PostMapping("/authJob")
+//	public boolean authJob(@RequestParam String userId,@RequestParam String job) {
+//		Expert expert=new Expert();
+//		expert.setPhone(userId);
+//		expert.setJob(job);
+//		return expertService.saveOrUpdate(expert);
+//	}
 	
 }

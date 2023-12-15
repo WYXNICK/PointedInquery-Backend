@@ -21,12 +21,12 @@ public interface UserMapper extends BaseMapper<User> {
 	public int changePasswd(String newPasswdd,String userId);
 	
 	//判断是否是行家
-	@Select("select isexpert from user where phone=#{userId}")
+	@Select("select is_expert from user where phone=#{userId}")
 	@ResultType(String.class)
 	public boolean IsExpert(String userId);
 	
 	//认证行家身份
-	@Update("update user set isexpert=\"是\" where phone=#{userId}")
+	@Update("update user set is_expert=\"是\" where phone=#{userId}")
 	public int beExpert(String userId);
 
 	//判断是否存在这样一条收藏关系
