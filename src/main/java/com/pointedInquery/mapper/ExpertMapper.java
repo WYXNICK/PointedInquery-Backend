@@ -26,7 +26,7 @@ public interface ExpertMapper extends BaseMapper<Expert> {
     @Select("SELECT * FROM expert WHERE phone = #{expertId}")
     Expert selectExpertByExpertId(String expertId);
 
-    @Select("SELECT * FROM expert WHERE id = #{expertId}")
+    @Select("SELECT * FROM expert WHERE id = #{id}")
     Expert selectExpertById(String id);
 
 }

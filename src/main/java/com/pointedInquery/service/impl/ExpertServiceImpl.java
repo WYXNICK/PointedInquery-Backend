@@ -182,7 +182,7 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
     @Override
     public Integer addExpert(AddExpertDto addExpertDto) {
-        if(expertMapper.selectById(addExpertDto.getPhone())==null) {
+        if(expertMapper.selectExpertByExpertId(addExpertDto.getPhone())==null) {
             Expert expert = new Expert(addExpertDto.getPhone(), addExpertDto.getRealName(), 0F, addExpertDto.getDescription(), addExpertDto.getId(), addExpertDto.getJob(), addExpertDto.getType());
 
             // 获取当前时间戳
