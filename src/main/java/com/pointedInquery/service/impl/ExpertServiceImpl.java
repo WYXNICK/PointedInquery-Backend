@@ -41,6 +41,9 @@ public class ExpertServiceImpl extends ServiceImpl<ExpertMapper, Expert> impleme
 
     @Autowired
     private QualificationMapper qualificationMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 //    @Override
 //    public Expert getOneExpert(String phone) {
 //        return expertMapper.selectExpertByExpertId(phone);

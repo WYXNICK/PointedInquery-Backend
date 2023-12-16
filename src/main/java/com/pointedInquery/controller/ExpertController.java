@@ -71,7 +71,7 @@ public class ExpertController {
 
 	//个人申请成为行家
 	@PostMapping("/addExpert")
-	public Integer addExpert(AddExpertDto addExpertDto) {
+	public int addExpert(AddExpertDto addExpertDto) {
 		return expertService.addExpert(addExpertDto);
 	}
 

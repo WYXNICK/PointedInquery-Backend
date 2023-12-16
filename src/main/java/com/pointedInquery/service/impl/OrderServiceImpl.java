@@ -54,7 +54,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             String realName=expert==null?"":expert.getRealName();
             String title=topic==null?"":topic.getTitle();
             OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getCustomerId(),order.getExpertId()
-            ,order.getTopicId(),order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
+            ,topic,order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
             dtoList.add(dto);
         }
         return dtoList;
@@ -64,11 +64,23 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      * 根据expert_id查找该用户所有的订单
      * */
     @Override
-    public List<Order> GetOrderByExpertID(Object expert_id){
+    public List<OrderDetailedInfoDto> GetOrderByExpertID(Object expert_id){
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("expert_id",expert_id.toString());
-
-        return orderMapper.selectList(queryWrapper);
+        List<OrderDetailedInfoDto> dtoList=new ArrayList<>();
+        List<Order> orderList= orderMapper.selectList(queryWrapper);
+        for(Order order : orderList){
+            String expertId= order.getExpertId();
+            String topicId=order.getTopicId();
+            Expert expert=expertMapper.selectById(expertId);
+            Topic topic=topicMapper.selectById(topicId);
+            String realName=expert==null?"":expert.getRealName();
+            String title=topic==null?"":topic.getTitle();
+            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getCustomerId(),order.getExpertId()
+                    ,topic,order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
+            dtoList.add(dto);
+        }
+        return dtoList;
 
     }
 
@@ -150,6 +162,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             return true;  //修改状态成功
         else
             return false;  //修改状态失败
+    }
+
+    @Override
+    public int CancleOrder(String orderId) {
+        return orderMapper.cancleOrder(orderId);
     }
 
 }

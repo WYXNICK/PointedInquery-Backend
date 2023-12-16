@@ -1,5 +1,6 @@
 package com.pointedInquery.dto;
 
+import com.pointedInquery.entity.Topic;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class OrderDetailedInfoDto {
 
     private String expertId;
 
-    private String topicId;
+    private Topic topic;
 
     private String payTime;
 

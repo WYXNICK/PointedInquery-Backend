@@ -27,7 +27,7 @@ public class OrderController {
         return orderService.GetOrderByID(customerId);
     }
     @GetMapping("/GetOrderByExpertID")
-    public List<Order> GetOrderByExpertID(@RequestParam String expert_id) {
+    public List<OrderDetailedInfoDto> GetOrderByExpertID(@RequestParam String expert_id) {
         return orderService.GetOrderByExpertID(expert_id);
     }
 
@@ -55,6 +55,11 @@ public class OrderController {
     @PostMapping("/ModifyOrderStatusToReview")
     public boolean ModifyOrderStatusToReview(@RequestParam Map<String, Object> param) {
         return orderService.ModifyOrderStatusToReview(param.get("customer_id"),param.get("order_id"));
+    }
+
+    @PostMapping("/CancleOrder")
+    public int CancleOrder(@RequestParam String orderId){
+        return orderService.CancleOrder(orderId);
     }
 
 

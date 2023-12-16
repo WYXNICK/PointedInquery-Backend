@@ -16,7 +16,7 @@ public interface OrderService extends IService<Order> {
 
     List<OrderDetailedInfoDto> GetOrderByID(Object customer_id);
 
-    List<Order> GetOrderByExpertID(Object expert_id);
+    List<OrderDetailedInfoDto> GetOrderByExpertID(Object expert_id);
 
     boolean CreateOrder(String customer_id, String expert_id, String topic_id, String appoint_time, Integer price);
 
@@ -25,4 +25,6 @@ public interface OrderService extends IService<Order> {
     boolean ModifyOrderStatusToFinish(Object customer_id, Object order_id);
 
     boolean ModifyOrderStatusToReview(Object customer_id, Object order_id);
+
+    int CancleOrder(String orderId);
 }
