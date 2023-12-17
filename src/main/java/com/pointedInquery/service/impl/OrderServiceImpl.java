@@ -5,9 +5,11 @@ import com.pointedInquery.dto.OrderDetailedInfoDto;
 import com.pointedInquery.entity.Expert;
 import com.pointedInquery.entity.Order;
 import com.pointedInquery.entity.Topic;
+import com.pointedInquery.entity.User;
 import com.pointedInquery.mapper.ExpertMapper;
 import com.pointedInquery.mapper.OrderMapper;
 import com.pointedInquery.mapper.TopicMapper;
+import com.pointedInquery.mapper.UserMapper;
 import com.pointedInquery.service.OrderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     private ExpertMapper expertMapper;
     @Autowired
     private TopicMapper topicMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     /*
      * 根据customer_id查找该用户所有的订单
@@ -51,9 +55,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             String topicId=order.getTopicId();
             Expert expert=expertMapper.selectById(expertId);
             Topic topic=topicMapper.selectById(topicId);
+            User user=userMapper.selectById(order.getCustomerId());
             String realName=expert==null?"":expert.getRealName();
             String title=topic==null?"":topic.getTitle();
-            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getCustomerId(),order.getExpertId()
+            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getExpertId(),user
             ,topic,order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
             dtoList.add(dto);
         }
@@ -74,9 +79,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             String topicId=order.getTopicId();
             Expert expert=expertMapper.selectById(expertId);
             Topic topic=topicMapper.selectById(topicId);
+            User user=userMapper.selectById(order.getCustomerId());
             String realName=expert==null?"":expert.getRealName();
             String title=topic==null?"":topic.getTitle();
-            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getCustomerId(),order.getExpertId()
+            OrderDetailedInfoDto dto=new OrderDetailedInfoDto(order.getOrderId(),order.getExpertId(),user
                     ,topic,order.getPayTime(),order.getAppointTime(),order.getState(),order.getPrice(),realName,title);
             dtoList.add(dto);
         }
