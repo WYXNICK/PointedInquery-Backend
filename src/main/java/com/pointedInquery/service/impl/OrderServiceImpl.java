@@ -48,6 +48,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public List<OrderDetailedInfoDto> GetOrderByID(Object customer_id){
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("customer_id",customer_id);
+        queryWrapper.orderByDesc("pay_time");
         List<OrderDetailedInfoDto> dtoList=new ArrayList<>();
         List<Order> orderList= orderMapper.selectList(queryWrapper);
         for(Order order : orderList){
@@ -72,6 +73,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public List<OrderDetailedInfoDto> GetOrderByExpertID(Object expert_id){
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("expert_id",expert_id.toString());
+        queryWrapper.orderByDesc("pay_time");
         List<OrderDetailedInfoDto> dtoList=new ArrayList<>();
         List<Order> orderList= orderMapper.selectList(queryWrapper);
         for(Order order : orderList){
