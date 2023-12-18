@@ -31,13 +31,6 @@ public class QualificationController {
 	@Autowired
 	private UserService userService;
 	
-	//管理员修改资质状态
-//	@PostMapping("/check")
-//	public boolean check(@RequestParam(value = "userId")String userId,
-//			@RequestParam(value = "qid")String qid,@RequestParam(value = "state")String state) {
-//		return qualificationService.check(state, qid, userId);
-//	}
-	
 	/**
 	 * 上传图片
 	 * @param files
@@ -70,72 +63,7 @@ public class QualificationController {
 		}
 		return qualificationService.upload(builder.toString(), qid, userId);
 	}
-	
-	/**
-	 * 
-	 * @param qualification 包含qid、用户id、资质名、资质内容
-	 * @return 保存成功，返回qid
-	 */
-//	@PostMapping("/uploadInfo")
-//	public ServerResponse<String> uploadInfo(Qualification qualification) {
-//		String phone=qualification.getPhone();
-//		String qid=qualification.getQid();
-//		//用户还没有行家身份，或必填信息为空
-//		if(!userService.IsExpert(phone)||phone==null||qid==null)
-//			return ServerResponse.failure(ReturnCode.ACCESS_DENIED);
-//
-//		//资质领域是否重复
-//		Qualification list=qualificationService.findOneByPhone(phone,qid);
-//		if(list!=null) {
-//			return ServerResponse.failure(ReturnCode.INFO_REPEAT);
-//		}
-//
-//		qualification.setState("未审核");
-//		//保存到数据库
-//		if(qualificationService.save(qualification))
-//			return ServerResponse.success(null);
-//		else {
-//			return ServerResponse.failure(ReturnCode.RC999);
-//		}
-//	}
-	
-	/**
-	 * 修改已有资质信息
-	 * @param qualification
-	 * @param files
-	 * @return
-	 * @throws IOException
-	 */
-//	@PostMapping("/changeInfo")
-//	public ServerResponse<Boolean> changeInfo(Qualification qualification,MultipartFile[] files) throws IOException {
-//		//上传了图片，进行更新
-//		if(files.length>0) {
-//			String qid = qualification.getQid();
-//			String photoURL = qualificationService.getById(qid).getPhoto();
-//
-//			//如果原来保存了图片
-//			if(photoURL!=null) {
-//				//先将原本的图片删除
-//				String photoURLs[]=photoURL.split(",");
-//				for(String url:photoURLs) {
-//					File file=new File(url);
-//					file.delete();
-//				}
-//			}
-//
-//			//再保存现在的图片
-//			if(!uploadPhoto(files, qid,qualification.getPhone())) {
-//				return ServerResponse.failure(ReturnCode.PHOTO_UPLOAD_FAILED);
-//			}
-//
-//		}
-//		if(qualificationService.saveOrUpdate(qualification)) {
-//			return ServerResponse.success(null);
-//		}
-//		else {
-//			return ServerResponse.failure(ReturnCode.RC999);
-//		}
-//	}
+
 	
 	/**
 	 * 根据用户id查找相关资质信息

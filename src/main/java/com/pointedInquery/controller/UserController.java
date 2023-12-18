@@ -87,28 +87,6 @@ public class UserController {
 	public boolean changeInfo(@RequestBody User user){
 		return userService.saveOrUpdate(user);
 	}
-	
-//	@PostMapping("/changePasswd")
-//	public ServerResponse<Boolean> changePasswd(String userId,String oldPasswd,String newPasswd) {
-//		//密码错误
-//		if(userService.getById(userId).getPassword()!=getMD5Str(oldPasswd)) {
-//			return ServerResponse.failure(ReturnCode.USERID_OR_PASSWORD_ERROR);
-//		}
-//		//进行修改
-//		if(userService.changePasswd(newPasswd, userId)>0) {
-//			return ServerResponse.success(null);
-//		}
-//		else {
-//			return ServerResponse.failure(ReturnCode.RC999);
-//		}
-//	}
-	
-	//removeById的使用前提是，Mapper中标明了主键
-//	@PostMapping("/deleteByPhone")
-//	public boolean deleteByPhone(String userId) {
-//		return userService.removeById(userId);
-//	}
-
 
 	//判断是否被收藏
 	@GetMapping("/checkCollectDir")

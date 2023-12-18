@@ -27,11 +27,6 @@ public class ExpertController {
 		return expertService.listByType(type);
 	}
 
-    //在expert里加入一个方法，接受的参数为用户id，返回用户收藏的所有专家列表，每一个元素是专家的所有信息
-//	@GetMapping("/user-collection")
-//	public List<Expert> getUserCollection(@RequestParam String userID) {
-//		return expertService.listCollectDir(userID);
-//	}
 
 //	后端返回的data是一个数组，表示所有匹配的专家信息，包括realName，job，topic数组（表示一个专家包含的所有topic）,price
 	@GetMapping("/search")
@@ -43,30 +38,13 @@ public class ExpertController {
 	public ExpertDetailedDto getOne(@RequestParam String expertId) {
 		return expertService.getOneExpert(expertId);
 	}
-	
-//	@PostMapping("/addExpert")
-//	public boolean addExpert(@RequestParam String userId,@RequestParam String name,@RequestParam String ID) {
-//		Expert expert=new Expert();
-//		expert.setId(ID);
-//		expert.setPhone(userId);
-//		expert.setRealName(name);
-//		return expertService.save(expert);
-//	}
+
 	
 	//行家修改自己的个人信息
 	@PostMapping("/changeInfo")
 	public int changeInfo(AddExpertDto addExpertDto) {
 		return expertService.saveOrUpdate(addExpertDto);
 	}
-	
-	//由管理员授予行家身份说明
-//	@PostMapping("/authJob")
-//	public boolean authJob(@RequestParam String userId,@RequestParam String job) {
-//		Expert expert=new Expert();
-//		expert.setPhone(userId);
-//		expert.setJob(job);
-//		return expertService.saveOrUpdate(expert);
-//	}
 
 
 	//个人申请成为行家
