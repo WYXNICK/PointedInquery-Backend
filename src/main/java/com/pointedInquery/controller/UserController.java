@@ -65,7 +65,7 @@ public class UserController {
 		User user=new User();
 		//刚注册用户不会有行家权限
 		user.setPhone(userId);
-//		user.setIsexpert("否");
+		user.setIsExpert(0);
 		//对密码进行加密
 		user.setPassword(getMD5Str(passwd));
 		if(userService.save(user))
